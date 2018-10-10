@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Data;
@@ -12,18 +13,31 @@ using PowerPoint = Microsoft.Office.Interop.PowerPoint;
 using System.Runtime.InteropServices;
 using Finisar.SQLite;
 using System.Threading;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace Apresentacao
 {
     public partial class FormPrincipal : Form
     {
-        private string PODEENCERRAR = "###PodeEncerrar###";
-        private string TOOGLEDEBUG = "###AtivarDesativarDebug###";
-        private string DETAILVISIBLE = "###AtivarDetail###";
-        private string DETAILHIDEN = "###DesativarDetail###";
-        private string DETAILTEXT = "###DetailText###";
-        private string LIMPARTUDO = "###LimparTudo###";
-        
+        private const int TIPO_VAZIO = 0;
+        private const int TIPO_AVISO = 1;
+        private const int TIPO_LOUVOR = 2;
+        private const int TIPO_VERSICULO = 3;
+
+        private const string XAML_SET_IMAGE = "SetImage";
+        private const string XAML_SET_TEXT = "SetText";
+
+        private const string XAML_IMG_BIBLIA = "ImgBiblia";
+        private const string XAML_IMG_REFERENCIA = "ImgReferencia";
+        private const string XAML_TXT_REFERENCIA = "TxtReferencia";
+        private const string XAML_TXT_VERSICULO = "TxtVersiculo";
+        private const string XAML_TXT_LOUVOR = "TxtLouvor";
+
+        private string XAML_INPUT_ID = "";
+        private string XAML_IMG_BIBLIA_LOCATION = "";
+        private string XAML_IMG_REFERENCIA_LOCATION = "";
+
         private int lastIdShowedInTooltip;
         private string groupBoxHinosName;
 
@@ -54,13 +68,6 @@ namespace Apresentacao
 
             setObjectText(toolStripStatusLabelStatus, "toolStrip", "Inicializando ...");
             
-            PODEENCERRAR = EncodeTo64(PODEENCERRAR);
-            TOOGLEDEBUG  = EncodeTo64(TOOGLEDEBUG);
-            DETAILVISIBLE = EncodeTo64(DETAILVISIBLE);
-            DETAILHIDEN = EncodeTo64(DETAILHIDEN);
-            DETAILTEXT = EncodeTo64(DETAILTEXT);
-            LIMPARTUDO = EncodeTo64(LIMPARTUDO);
-
             groupBoxHinosName = groupBoxHinos.Text;
 
             historicoBiblia = new List<BibliaItem>();
@@ -656,8 +663,7 @@ namespace Apresentacao
                         String linha;
                         HinoItem hino = item.GetItemHino();
 
-                        SendServerMessage(DETAILHIDEN);
-                        SendServerMessage(hino.nome.ToUpper());
+                        vMixSetupXAML(TIPO_LOUVOR,hino.nome.ToUpper());
                         
                         textBoxAtivo.Text = "";
 
@@ -678,10 +684,10 @@ namespace Apresentacao
                         break;
 
                     case TipoItem.Aviso:
-                        SendServerMessage(DETAILHIDEN);
-                        
                         AvisoItem aviso = item.GetItemAviso();
                         textBoxAtivo.Text = aviso.texto;
+
+                        vMixSetupXAML(TIPO_AVISO, aviso.texto);
 
                         buttonSalvarHino.Text = "Salvar Aviso";
                         buttonSalvarHino.Enabled = true;
@@ -696,16 +702,14 @@ namespace Apresentacao
 
                         textBoxAtivo.Text = biblia.Referencia + "\r\n\r\n" + biblia.Versiculo;
 
-                        SendServerMessage(DETAILVISIBLE);
-                        SendServerMessage(DETAILTEXT + biblia.Referencia);
-                        SendServerMessage(biblia.Versiculo);
+                        vMixSetupXAML(TIPO_VERSICULO, biblia.Versiculo, biblia.Referencia);
 
                         setObjectText(toolStripStatusLabelStatus, "toolStrip", "Ativado Versículo: " + biblia.Referencia);
                         
                         break;
 
                     case TipoItem.Arquivo:
-                        SendServerMessage(DETAILHIDEN);
+                        vMixSetupXAML(TIPO_VAZIO);
                         
                         textBoxAtivo.Text = "O item selecionado é do tipo Arquivo.\r\nNão há como visualizar aqui.";
                         buttonSalvarHino.Enabled = false;
@@ -716,7 +720,7 @@ namespace Apresentacao
                         break;
 
                     default:
-                        SendServerMessage(DETAILHIDEN);
+                        vMixSetupXAML(TIPO_VAZIO);
                         
                         textBoxAtivo.Text = "Item selecionado inválido.";
                         buttonSalvarHino.Enabled = false;
@@ -1103,57 +1107,150 @@ namespace Apresentacao
             textBoxBuscar.SelectAll();
         }
 
-        private void SendServerMessage(String message)
+        private bool validaElemento(XmlElement xmlInput)
+        {
+            if (xmlInput.SelectNodes("./text[@name='" + XAML_TXT_VERSICULO + "']").Count > 0)
+                return true;
+
+            if (xmlInput.SelectNodes("./text[@name='" + XAML_TXT_REFERENCIA + "']").Count > 0)
+                return true;
+
+            if (xmlInput.SelectNodes("./text[@name='" + XAML_TXT_LOUVOR + "']").Count > 0)
+                return true;
+
+            return false;
+
+        }
+
+        private void vMixSetupXAML(int tipo, String textoPrincipal = null, String textoReferencia = null)
         {
             if (!toolStripMenuItemAtivarSocket.Checked) return;
 
             String server = toolStripTextBoxIPSocket.Text;
+            String url_base = string.Format("http://{0}/api/", server);
+
+            WebRequest request;
+            WebResponse response;
 
             try
             {
-                // Create a TcpClient. 
-                // Note, for this client to work you need to have a TcpServer  
-                // connected to the same address as specified by the server, port 
-                // combination.
-                Int32 port = 13000;
-                TcpClient client = new TcpClient(server, port);
-                
-                // Translate the passed message into ASCII and store it as a Byte array.
-                Byte[] data = System.Text.Encoding.UTF8.GetBytes(message);
+                // Carrega XML
+                request = WebRequest.Create(url_base);
+                response = request.GetResponse();
+                String status = ((HttpWebResponse)response).StatusDescription;
+                StreamReader reader = new StreamReader(response.GetResponseStream());
+                string responseFromServer = reader.ReadToEnd();
+                reader.Close();
+                response.Close();
 
-                // Get a client stream for reading and writing. 
-                //  Stream stream = client.GetStream();
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.LoadXml(responseFromServer);
+                foreach(XmlElement xmlInput in xmlDoc.SelectNodes("//input[@type='Xaml']"))
+                {
+                    if(validaElemento(xmlInput))
+                    {
+                        string key = xmlInput.GetAttribute("key");
+                        if (!XAML_INPUT_ID.Equals(key))
+                        {
+                            XAML_INPUT_ID = key;
 
-                NetworkStream stream = client.GetStream();
+                            foreach (XmlElement xmlImage in xmlInput.SelectNodes("./image"))
+                            {
+                                string name = xmlImage.GetAttribute("name");
 
-                // Send the message to the connected TcpServer. 
-                stream.Write(data, 0, data.Length);
+                                if (XAML_IMG_BIBLIA.Equals(name))
+                                    XAML_IMG_BIBLIA_LOCATION = xmlImage.InnerText.Replace("file:///", "");
 
-                // Receive the TcpServer.response. 
+                                if (XAML_IMG_REFERENCIA.Equals(name))
+                                    XAML_IMG_REFERENCIA_LOCATION = xmlImage.InnerText.Replace("file:///", "");
+                            }
 
-                // Buffer to store the response bytes.
-                //data = new Byte[256];
+                        }
+                        break;
+                    }
+                }
 
-                // String to store the response ASCII representation.
-                //String responseData = String.Empty;
+                if (XAML_INPUT_ID.Length == 0)
+                    return;
 
-                // Read the first batch of the TcpServer response bytes.
-                //Int32 bytes = stream.Read(data, 0, data.Length);
-                //responseData = System.Text.Encoding.UTF8.GetString(data, 0, bytes);
+                switch (tipo)
+                {
+                    case TIPO_AVISO:
+                    case TIPO_LOUVOR:
+                        // Limpa imagem da biblia
+                        vMixSendAPIMessage(url_base, XAML_SET_IMAGE, XAML_INPUT_ID, XAML_IMG_BIBLIA, "");
 
-                // Close everything.
-                stream.Close();
-                client.Close();
+                        // Limpa imagem da referencia
+                        vMixSendAPIMessage(url_base, XAML_SET_IMAGE, XAML_INPUT_ID, XAML_IMG_REFERENCIA, "");
+
+                        // Limpa texto do versiculo
+                        vMixSendAPIMessage(url_base, XAML_SET_TEXT, XAML_INPUT_ID, XAML_TXT_VERSICULO, "");
+
+                        // Limpa texto da referencia
+                        vMixSendAPIMessage(url_base, XAML_SET_TEXT, XAML_INPUT_ID, XAML_TXT_REFERENCIA, "");
+
+                        // Seta texto principal
+                        vMixSendAPIMessage(url_base, XAML_SET_TEXT, XAML_INPUT_ID, XAML_TXT_LOUVOR, textoPrincipal);
+
+                        break;
+
+                    case TIPO_VERSICULO:
+                        // Limpa texto principal
+                        vMixSendAPIMessage(url_base, XAML_SET_TEXT, XAML_INPUT_ID, XAML_TXT_LOUVOR, "");
+
+                        // Seta imagem da biblia
+                        vMixSendAPIMessage(url_base, XAML_SET_IMAGE, XAML_INPUT_ID, XAML_IMG_BIBLIA, XAML_IMG_BIBLIA_LOCATION);
+
+                        // Seta imagem da referencia
+                        vMixSendAPIMessage(url_base, XAML_SET_IMAGE, XAML_INPUT_ID, XAML_IMG_REFERENCIA, XAML_IMG_REFERENCIA_LOCATION);
+
+                        // Seta texto do versiculo
+                        vMixSendAPIMessage(url_base, XAML_SET_TEXT, XAML_INPUT_ID, XAML_TXT_VERSICULO, textoPrincipal);
+
+                        // Seta texto da referencia
+                        vMixSendAPIMessage(url_base, XAML_SET_TEXT, XAML_INPUT_ID, XAML_TXT_REFERENCIA, textoReferencia);
+
+                        break;
+
+                    case TIPO_VAZIO:
+                    default:
+                        // Limpa imagem da biblia
+                        vMixSendAPIMessage(url_base, XAML_SET_IMAGE, XAML_INPUT_ID, XAML_IMG_BIBLIA, "");
+
+                        // Limpa imagem da referencia
+                        vMixSendAPIMessage(url_base, XAML_SET_IMAGE, XAML_INPUT_ID, XAML_IMG_REFERENCIA, "");
+
+                        // Limpa texto do versiculo
+                        vMixSendAPIMessage(url_base, XAML_SET_TEXT, XAML_INPUT_ID, XAML_TXT_VERSICULO, "");
+
+                        // Limpa texto da referencia
+                        vMixSendAPIMessage(url_base, XAML_SET_TEXT, XAML_INPUT_ID, XAML_TXT_REFERENCIA, "");
+
+                        // Limpa texto principal
+                        vMixSendAPIMessage(url_base, XAML_SET_TEXT, XAML_INPUT_ID, XAML_TXT_LOUVOR, "");
+
+                        break;
+                }
+
             }
-            catch (ArgumentNullException e)
+            catch (Exception e)
             {
-                toolStripStatusLabelServer.Text = "ArgumentNullException: " + e.Message.Replace("\n","");
-            }
-            catch (SocketException e)
-            {
-                toolStripStatusLabelServer.Text = "SocketException: " + e.Message.Replace("\n", "");
+                toolStripStatusLabelServer.Text = "Exception: " + e.Message.Replace("\n", "");
             }
 
+        }
+
+        private void vMixSendAPIMessage(String url_base, String function, String input, String name, String value)
+        {
+            String url = string.Format("{0}?Function={1}&Input={2}&SelectedName={3}&Value={4}", url_base, function, input, name, value);
+
+            WebRequest request = WebRequest.Create(url);
+            WebResponse response = request.GetResponse();
+            String status = ((HttpWebResponse)response).StatusDescription;
+            StreamReader reader = new StreamReader(response.GetResponseStream());
+            string responseFromServer = reader.ReadToEnd();
+            reader.Close();
+            response.Close();
         }
 
         private void SelecionarLinhaAndEnviar(bool selecionarLinha = false)
@@ -1166,16 +1263,16 @@ namespace Apresentacao
 
                 if (linha.Length > 0)
                 {
-                    SendServerMessage(linha);
+                    vMixSetupXAML(TIPO_LOUVOR, linha);
                 }
                 else
                 {
-                    SendServerMessage(" ");
+                    vMixSetupXAML(TIPO_VAZIO);
                 }
             }
             catch (Exception e)
             {
-                SendServerMessage(" ");
+                vMixSetupXAML(TIPO_VAZIO);
             }
         }
 
@@ -1340,19 +1437,9 @@ namespace Apresentacao
             }
         }
 
-        private void ativaDesativaDebugToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SendServerMessage(TOOGLEDEBUG);
-        }
-
-        private void desativarListenerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SendServerMessage(PODEENCERRAR);
-        }
-
         private void limparTudoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SendServerMessage(LIMPARTUDO);
+            vMixSetupXAML(TIPO_VAZIO);
         }
 
         private void textBoxBibliaEnterKey_KeyUp(object sender, KeyEventArgs e)

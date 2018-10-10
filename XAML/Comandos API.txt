@@ -1,0 +1,29 @@
+
+[Leitura Biblia]
+
+Limpar Louvor
+http://127.0.0.1:8088/api/?Function=SetText&Input=ac9e5ea7-1c12-4716-88dd-d0f05a9e0ec0&SelectedName=TxtLouvor&Value=
+
+Voltar Imagens
+http://127.0.0.1:8088/api/?Function=SetImage&Input=ac9e5ea7-1c12-4716-88dd-d0f05a9e0ec0&SelectedName=ImgBiblia&Value=C:/Users/u0180308/Desktop/Igreja/XAML/VersiculoAbaixo/VersiculoAbaixo-Biblia.png
+http://127.0.0.1:8088/api/?Function=SetImage&Input=ac9e5ea7-1c12-4716-88dd-d0f05a9e0ec0&SelectedName=ImgReferencia&Value=C:/Users/u0180308/Desktop/Igreja/XAML/VersiculoAbaixo/VersiculoAbaixo-Referencia.png
+
+Setar Referencia e Versiculo 
+http://127.0.0.1:8088/api/?Function=SetText&Input=ac9e5ea7-1c12-4716-88dd-d0f05a9e0ec0&SelectedName=TxtReferencia&Value=Isaías 64:5
+http://127.0.0.1:8088/api/?Function=SetText&Input=ac9e5ea7-1c12-4716-88dd-d0f05a9e0ec0&SelectedName=TxtVersiculo&Value=Saíste ao encontro daquele que se alegrava e praticava justiça e dos que se lembram de ti nos teus caminhos; eis que te iraste, porque pecamos; neles há eternidade, para que sejamos salvos?
+
+
+[Louvor]
+
+Limpar Imagens
+http://127.0.0.1:8088/api/?Function=SetImage&Input=ac9e5ea7-1c12-4716-88dd-d0f05a9e0ec0&SelectedName=ImgBiblia&Value=
+http://127.0.0.1:8088/api/?Function=SetImage&Input=ac9e5ea7-1c12-4716-88dd-d0f05a9e0ec0&SelectedName=ImgReferencia&Value=
+
+Limpar Referencia e Versiculo
+http://127.0.0.1:8088/api/?Function=SetText&Input=ac9e5ea7-1c12-4716-88dd-d0f05a9e0ec0&SelectedName=TxtReferencia&Value=
+http://127.0.0.1:8088/api/?Function=SetText&Input=ac9e5ea7-1c12-4716-88dd-d0f05a9e0ec0&SelectedName=TxtVersiculo&Value=
+
+Setar Louvor
+http://127.0.0.1:8088/api/?Function=SetText&Input=ac9e5ea7-1c12-4716-88dd-d0f05a9e0ec0&SelectedName=TxtLouvor&Value=E todos saberão que sirvo ao Deus das causas impossíveis!
+
+
