@@ -10,9 +10,8 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Apresentacao</RootNamespace>
     <AssemblyName>Projecao</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
@@ -26,9 +25,8 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
-    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -54,23 +52,10 @@
     <StartupObject>Apresentacao.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>C76B0FB80CC89E143CC405577375E074D7B823A1</ManifestCertificateThumbprint>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ManifestKeyFile>Apresentacao_TemporaryKey.pfx</ManifestKeyFile>
+    <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
-  </PropertyGroup>
-  <PropertyGroup>
-    <TargetZone>LocalIntranet</TargetZone>
-  </PropertyGroup>
-  <PropertyGroup />
-  <PropertyGroup>
-    <SignManifests>false</SignManifests>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>1383278097_45002.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
@@ -91,12 +76,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigPowerPoint.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ConfigPowerPoint.Designer.cs">
-      <DependentUpon>ConfigPowerPoint.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,9 +97,6 @@
     <Compile Include="SobrePrograma.Designer.cs">
       <DependentUpon>SobrePrograma.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ConfigPowerPoint.resx">
-      <DependentUpon>ConfigPowerPoint.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
     </EmbeddedResource>
@@ -132,15 +108,15 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SobrePrograma.resx">
       <DependentUpon>SobrePrograma.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="app.config" />
-    <None Include="Apresentacao_TemporaryKey.pfx" />
     <None Include="Biblia\biblia.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Hinos\hinos.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -152,17 +128,28 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Templates\01 Padrão\Culto 1 [Branco].potx">
+    <None Include="Templates\01 Padrão\Culto 1 [Cinza].potx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Templates\01 Padrão\Culto 2 [Papiro].potx" />
-    <None Include="Templates\01 Padrão\Culto 3 [Marinho].potx" />
-    <None Include="Templates\02 Santa Ceia\SantaCeia 1 [Azul].potx" />
-    <None Include="Templates\02 Santa Ceia\SantaCeia 2 [Preto].potx" />
-    <None Include="Templates\02 Santa Ceia\SantaCeia 3 [Amarelo].potx">
+    <None Include="Templates\01 Padrão\Culto 2 [Papiro].potx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Templates\02 Santa Ceia\SantaCeia 4 [Roxo].potx">
+    <None Include="Templates\01 Padrão\Culto 3 [Marinho].potx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\01 Padrão\Culto 4 [Marinho].potx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\01 Padrão\Culto Loop [Azul].potx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\02 Santa Ceia\SantaCeia 1 [Azul].potx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\02 Santa Ceia\SantaCeia 2 [Preto].potx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\02 Santa Ceia\SantaCeia 3 [Azul].potx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -196,32 +183,9 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1383278097_45002.ico" />
     <Content Include="Avisos\Estacionamento.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Hinos\A Ele a Glória.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Hinos\Aclame ao Senhor.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Hinos\Agnus Day.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Hinos\Aleleuia.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Hinos\Águas Purificadoras.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="imagens\FundoSlide.png" />
-    <None Include="imagens\arrow_refresh_small.png" />
-    <None Include="imagens\flag_green.gif" />
-    <None Include="imagens\flag_red.gif" />
-    <None Include="imagens\icon_accept.gif" />
-    <None Include="imagens\arrow_down.png" />
-    <None Include="imagens\arrow_up.png" />
     <Content Include="sqlite3.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

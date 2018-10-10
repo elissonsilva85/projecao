@@ -1,17 +1,16 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Resources;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Sistema de Projeção")]
-[assembly: AssemblyDescription("Sistema para projeção de hinos e versículos bíblicos através do Powerpoint ou vMix (www.vmix.com.au). Para integração com o vMix é necessário a utilização da DLL vMix_Projecao.dll disponibilizada na pasta vMix no local de instalação do software.")]
+[assembly: AssemblyTitle("Apresentacao")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Elisson Silva")]
-[assembly: AssemblyProduct("Sistema de Projeção")]
-[assembly: AssemblyCopyright("Copyright © 2013")]
+[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyProduct("Apresentacao")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -33,6 +32,5 @@ using System.Resources;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("3.0")]
-[assembly: AssemblyFileVersion("3.0")]
-[assembly: NeutralResourcesLanguageAttribute("pt-BR")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

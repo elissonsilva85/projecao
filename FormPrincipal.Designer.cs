@@ -29,21 +29,34 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
             this.buttonMostrarApresentacao = new System.Windows.Forms.Button();
+            this.comboBoxTemplate = new System.Windows.Forms.ComboBox();
             this.groupBoxHinos = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelHinos = new System.Windows.Forms.TableLayoutPanel();
-            this.textBoxBuscarLetra = new System.Windows.Forms.TextBox();
-            this.labelLetra = new System.Windows.Forms.Label();
-            this.buttonIncluirHino = new System.Windows.Forms.Button();
-            this.listBoxDisponivel = new System.Windows.Forms.ListBox();
-            this.textBoxBuscar = new System.Windows.Forms.TextBox();
-            this.labelTitulo = new System.Windows.Forms.Label();
-            this.buttonAtualizarBaseHinos = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.filtroIncluirButton = new System.Windows.Forms.Button();
+            this.filtroPesqHistoricoCheckBox = new System.Windows.Forms.CheckBox();
+            this.filtroLimparButton = new System.Windows.Forms.Button();
+            this.filtroConsultarButton = new System.Windows.Forms.Button();
+            this.filtroLetraTextBox = new System.Windows.Forms.TextBox();
+            this.filtroTituloTextBox = new System.Windows.Forms.TextBox();
+            this.filtroArtistaComboBox = new System.Windows.Forms.ComboBox();
+            this.filtroHistoricoDateTimePickerFim = new System.Windows.Forms.DateTimePicker();
+            this.filtroHistoricoDateTimePickerInicio = new System.Windows.Forms.DateTimePicker();
+            this.label15 = new System.Windows.Forms.Label();
+            this.labelFiltroLetra = new System.Windows.Forms.Label();
+            this.labelFiltroTitulo = new System.Windows.Forms.Label();
+            this.labelFiltroArtista = new System.Windows.Forms.Label();
+            this.filtroDataGridView = new System.Windows.Forms.DataGridView();
+            this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnArtista = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxSelecionadas = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelSelecionadas = new System.Windows.Forms.TableLayoutPanel();
             this.listBoxSelecionado = new System.Windows.Forms.ListBox();
             this.buttonRemover = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.buttonIncluirPowerpoint = new System.Windows.Forms.Button();
             this.groupBoxAvisos = new System.Windows.Forms.GroupBox();
             this.comboBoxAvisoTitulo = new System.Windows.Forms.ComboBox();
             this.buttonMostrarAviso = new System.Windows.Forms.Button();
@@ -51,34 +64,30 @@
             this.buttonLimparAviso = new System.Windows.Forms.Button();
             this.buttonIncluirAviso = new System.Windows.Forms.Button();
             this.textBoxAvisos = new System.Windows.Forms.TextBox();
-            this.buttonNovoHino = new System.Windows.Forms.Button();
+            this.groupBoxFerramentas = new System.Windows.Forms.GroupBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.checkBoxCarregaHinoAuto = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxTamanhoFonte = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.buttonSobre = new System.Windows.Forms.Button();
+            this.buttonSalvarPowerpoint = new System.Windows.Forms.Button();
             this.groupBoxAtiva = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanelAtivo = new System.Windows.Forms.TableLayoutPanel();
-            this.textBoxAtivo = new System.Windows.Forms.TextBox();
+            this.buttonNovoHino = new System.Windows.Forms.Button();
             this.buttonSalvarHino = new System.Windows.Forms.Button();
-            this.buttonRenomear = new System.Windows.Forms.Button();
-            this.tableLayoutNavegacaoLinha = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonVoltarLinha = new System.Windows.Forms.Button();
-            this.labelLinhaAtiva = new System.Windows.Forms.Label();
-            this.buttonAvancarLinha = new System.Windows.Forms.Button();
-            this.tableLayoutPanelPrincipal = new System.Windows.Forms.TableLayoutPanel();
-            this.groupBoxSlides = new System.Windows.Forms.GroupBox();
-            this.listBoxSlides = new System.Windows.Forms.ListBox();
-            this.checkBoxEnviarCopia = new System.Windows.Forms.CheckBox();
-            this.checkBoxGerarImagem = new System.Windows.Forms.CheckBox();
-            this.textBoxLocalSalvarImagem = new System.Windows.Forms.TextBox();
-            this.pictureBoxSlide = new System.Windows.Forms.PictureBox();
-            this.groupBoxVMix = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.webBrowserVMix = new System.Windows.Forms.WebBrowser();
-            this.textBoxVMixURL = new System.Windows.Forms.TextBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.textBoxArtista = new System.Windows.Forms.TextBox();
+            this.textBoxTitulo = new System.Windows.Forms.TextBox();
+            this.labelTitulo = new System.Windows.Forms.Label();
+            this.labelArtista = new System.Windows.Forms.Label();
+            this.textBoxAtivo = new System.Windows.Forms.TextBox();
             this.groupBoxBiblia = new System.Windows.Forms.GroupBox();
-            this.buttonHistoricoBiblia5 = new System.Windows.Forms.Button();
-            this.buttonHistoricoBiblia4 = new System.Windows.Forms.Button();
-            this.buttonHistoricoBiblia3 = new System.Windows.Forms.Button();
-            this.buttonHistoricoBiblia2 = new System.Windows.Forms.Button();
-            this.buttonHistoricoBiblia1 = new System.Windows.Forms.Button();
             this.buttonBibliaMostrar = new System.Windows.Forms.Button();
             this.buttonBibliaAdicionar = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -90,61 +99,36 @@
             this.comboBoxBibliaTraducao = new System.Windows.Forms.ComboBox();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.toolTipLetra = new System.Windows.Forms.ToolTip(this.components);
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripProgressBarMostrar = new System.Windows.Forms.ToolStripProgressBar();
-            this.toolStripStatusLabelStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabelServer = new System.Windows.Forms.ToolStripStatusLabel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.arquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salvarPorwerPointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importarPowerPointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.configuraçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.powerPointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemExibirEm = new System.Windows.Forms.ToolStripMenuItem();
-            this.tooltipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.apresentaçãoSelecionadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.xAMLvMixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemAtivarSocket = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripTextBoxIPSocket = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.ativaDesativaDebugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.desativarListenerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.limparTudoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.visãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.imagemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.avisosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.navegadorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sobreOProgramaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripComboBoxTemplate = new System.Windows.Forms.ToolStripComboBox();
-            this.toolTipBiblia = new System.Windows.Forms.ToolTip(this.components);
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.splitContainerMain = new System.Windows.Forms.SplitContainer();
+            this.tableLayoutPanelEsquerda = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanelLadoDireito = new System.Windows.Forms.TableLayoutPanel();
             this.groupBoxHinos.SuspendLayout();
             this.tableLayoutPanelHinos.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.filtroDataGridView)).BeginInit();
             this.groupBoxSelecionadas.SuspendLayout();
             this.tableLayoutPanelSelecionadas.SuspendLayout();
             this.groupBoxAvisos.SuspendLayout();
+            this.groupBoxFerramentas.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.groupBoxAtiva.SuspendLayout();
             this.tableLayoutPanelAtivo.SuspendLayout();
-            this.tableLayoutNavegacaoLinha.SuspendLayout();
-            this.tableLayoutPanelPrincipal.SuspendLayout();
-            this.groupBoxSlides.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlide)).BeginInit();
-            this.groupBoxVMix.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.groupBoxBiblia.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
+            this.splitContainerMain.Panel1.SuspendLayout();
+            this.splitContainerMain.Panel2.SuspendLayout();
+            this.splitContainerMain.SuspendLayout();
+            this.tableLayoutPanelEsquerda.SuspendLayout();
+            this.tableLayoutPanelLadoDireito.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonMostrarApresentacao
             // 
             this.buttonMostrarApresentacao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonMostrarApresentacao.Location = new System.Drawing.Point(150, 188);
+            this.buttonMostrarApresentacao.Location = new System.Drawing.Point(156, 234);
             this.buttonMostrarApresentacao.Name = "buttonMostrarApresentacao";
             this.buttonMostrarApresentacao.Size = new System.Drawing.Size(88, 34);
             this.buttonMostrarApresentacao.TabIndex = 2;
@@ -152,181 +136,303 @@
             this.buttonMostrarApresentacao.UseVisualStyleBackColor = true;
             this.buttonMostrarApresentacao.Click += new System.EventHandler(this.buttonMostrarApresentacao_Click);
             // 
+            // comboBoxTemplate
+            // 
+            this.tableLayoutPanelSelecionadas.SetColumnSpan(this.comboBoxTemplate, 2);
+            this.comboBoxTemplate.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBoxTemplate.FormattingEnabled = true;
+            this.comboBoxTemplate.Location = new System.Drawing.Point(3, 22);
+            this.comboBoxTemplate.Name = "comboBoxTemplate";
+            this.comboBoxTemplate.Size = new System.Drawing.Size(241, 21);
+            this.comboBoxTemplate.TabIndex = 0;
+            // 
             // groupBoxHinos
             // 
-            this.groupBoxHinos.BackColor = System.Drawing.SystemColors.Control;
+            this.tableLayoutPanelEsquerda.SetColumnSpan(this.groupBoxHinos, 2);
             this.groupBoxHinos.Controls.Add(this.tableLayoutPanelHinos);
             this.groupBoxHinos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxHinos.Location = new System.Drawing.Point(3, 33);
+            this.groupBoxHinos.Location = new System.Drawing.Point(3, 3);
             this.groupBoxHinos.Name = "groupBoxHinos";
-            this.tableLayoutPanelPrincipal.SetRowSpan(this.groupBoxHinos, 2);
-            this.groupBoxHinos.Size = new System.Drawing.Size(272, 330);
-            this.groupBoxHinos.TabIndex = 1;
+            this.groupBoxHinos.Size = new System.Drawing.Size(509, 244);
+            this.groupBoxHinos.TabIndex = 0;
             this.groupBoxHinos.TabStop = false;
             this.groupBoxHinos.Text = "Hinos disponíveis";
             // 
             // tableLayoutPanelHinos
             // 
-            this.tableLayoutPanelHinos.ColumnCount = 3;
+            this.tableLayoutPanelHinos.ColumnCount = 2;
             this.tableLayoutPanelHinos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tableLayoutPanelHinos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelHinos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.tableLayoutPanelHinos.Controls.Add(this.textBoxBuscarLetra, 1, 1);
-            this.tableLayoutPanelHinos.Controls.Add(this.labelLetra, 0, 1);
-            this.tableLayoutPanelHinos.Controls.Add(this.buttonIncluirHino, 0, 3);
-            this.tableLayoutPanelHinos.Controls.Add(this.listBoxDisponivel, 0, 2);
-            this.tableLayoutPanelHinos.Controls.Add(this.textBoxBuscar, 1, 0);
-            this.tableLayoutPanelHinos.Controls.Add(this.labelTitulo, 0, 0);
-            this.tableLayoutPanelHinos.Controls.Add(this.buttonAtualizarBaseHinos, 2, 3);
+            this.tableLayoutPanelHinos.Controls.Add(this.panel4, 0, 0);
+            this.tableLayoutPanelHinos.Controls.Add(this.filtroDataGridView, 0, 1);
             this.tableLayoutPanelHinos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelHinos.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanelHinos.Name = "tableLayoutPanelHinos";
-            this.tableLayoutPanelHinos.RowCount = 4;
-            this.tableLayoutPanelHinos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanelHinos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanelHinos.RowCount = 3;
+            this.tableLayoutPanelHinos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 92F));
             this.tableLayoutPanelHinos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelHinos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
+            this.tableLayoutPanelHinos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanelHinos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanelHinos.Size = new System.Drawing.Size(266, 311);
+            this.tableLayoutPanelHinos.Size = new System.Drawing.Size(503, 225);
             this.tableLayoutPanelHinos.TabIndex = 3;
             // 
-            // textBoxBuscarLetra
+            // panel4
             // 
-            this.tableLayoutPanelHinos.SetColumnSpan(this.textBoxBuscarLetra, 2);
-            this.textBoxBuscarLetra.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxBuscarLetra.Location = new System.Drawing.Point(51, 30);
-            this.textBoxBuscarLetra.Name = "textBoxBuscarLetra";
-            this.textBoxBuscarLetra.Size = new System.Drawing.Size(212, 20);
-            this.textBoxBuscarLetra.TabIndex = 1;
-            this.textBoxBuscarLetra.TextChanged += new System.EventHandler(this.textBoxBuscar_TextChanged);
+            this.tableLayoutPanelHinos.SetColumnSpan(this.panel4, 2);
+            this.panel4.Controls.Add(this.filtroIncluirButton);
+            this.panel4.Controls.Add(this.filtroPesqHistoricoCheckBox);
+            this.panel4.Controls.Add(this.filtroLimparButton);
+            this.panel4.Controls.Add(this.filtroConsultarButton);
+            this.panel4.Controls.Add(this.filtroLetraTextBox);
+            this.panel4.Controls.Add(this.filtroTituloTextBox);
+            this.panel4.Controls.Add(this.filtroArtistaComboBox);
+            this.panel4.Controls.Add(this.filtroHistoricoDateTimePickerFim);
+            this.panel4.Controls.Add(this.filtroHistoricoDateTimePickerInicio);
+            this.panel4.Controls.Add(this.label15);
+            this.panel4.Controls.Add(this.labelFiltroLetra);
+            this.panel4.Controls.Add(this.labelFiltroTitulo);
+            this.panel4.Controls.Add(this.labelFiltroArtista);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel4.Location = new System.Drawing.Point(3, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(497, 86);
+            this.panel4.TabIndex = 6;
             // 
-            // labelLetra
+            // filtroIncluirButton
             // 
-            this.labelLetra.AutoSize = true;
-            this.labelLetra.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelLetra.Location = new System.Drawing.Point(3, 27);
-            this.labelLetra.Name = "labelLetra";
-            this.labelLetra.Size = new System.Drawing.Size(42, 27);
-            this.labelLetra.TabIndex = 2;
-            this.labelLetra.Text = "Letra:";
-            this.labelLetra.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.filtroIncluirButton.Location = new System.Drawing.Point(420, 56);
+            this.filtroIncluirButton.Name = "filtroIncluirButton";
+            this.filtroIncluirButton.Size = new System.Drawing.Size(73, 27);
+            this.filtroIncluirButton.TabIndex = 12;
+            this.filtroIncluirButton.Text = "INCLUIR";
+            this.filtroIncluirButton.UseVisualStyleBackColor = true;
+            this.filtroIncluirButton.Click += new System.EventHandler(this.buttonIncluirHino_Click);
             // 
-            // buttonIncluirHino
+            // filtroPesqHistoricoCheckBox
             // 
-            this.tableLayoutPanelHinos.SetColumnSpan(this.buttonIncluirHino, 2);
-            this.buttonIncluirHino.Location = new System.Drawing.Point(3, 271);
-            this.buttonIncluirHino.Name = "buttonIncluirHino";
-            this.buttonIncluirHino.Size = new System.Drawing.Size(149, 34);
-            this.buttonIncluirHino.TabIndex = 3;
-            this.buttonIncluirHino.Text = "Incluir Hinos Selecionados";
-            this.buttonIncluirHino.UseVisualStyleBackColor = true;
-            this.buttonIncluirHino.Click += new System.EventHandler(this.buttonIncluirHino_Click);
+            this.filtroPesqHistoricoCheckBox.AutoSize = true;
+            this.filtroPesqHistoricoCheckBox.Location = new System.Drawing.Point(269, 8);
+            this.filtroPesqHistoricoCheckBox.Name = "filtroPesqHistoricoCheckBox";
+            this.filtroPesqHistoricoCheckBox.Size = new System.Drawing.Size(129, 17);
+            this.filtroPesqHistoricoCheckBox.TabIndex = 6;
+            this.filtroPesqHistoricoCheckBox.Text = "Pesquisar no histórico";
+            this.filtroPesqHistoricoCheckBox.UseVisualStyleBackColor = true;
+            this.filtroPesqHistoricoCheckBox.CheckedChanged += new System.EventHandler(this.filtroPesqHistoricoCheckBox_CheckedChanged);
             // 
-            // listBoxDisponivel
+            // filtroLimparButton
             // 
-            this.listBoxDisponivel.AllowDrop = true;
-            this.tableLayoutPanelHinos.SetColumnSpan(this.listBoxDisponivel, 3);
-            this.listBoxDisponivel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxDisponivel.FormattingEnabled = true;
-            this.listBoxDisponivel.Location = new System.Drawing.Point(3, 57);
-            this.listBoxDisponivel.Name = "listBoxDisponivel";
-            this.listBoxDisponivel.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.listBoxDisponivel.Size = new System.Drawing.Size(260, 208);
-            this.listBoxDisponivel.Sorted = true;
-            this.listBoxDisponivel.TabIndex = 2;
-            this.listBoxDisponivel.DragDrop += new System.Windows.Forms.DragEventHandler(this.incluirItem_DragDrop);
-            this.listBoxDisponivel.DragEnter += new System.Windows.Forms.DragEventHandler(this.incluirItem_DragEnter);
-            this.listBoxDisponivel.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxDisponivel_MouseDoubleClick);
-            this.listBoxDisponivel.MouseLeave += new System.EventHandler(this.listBoxDisponivel_MouseLeave);
-            this.listBoxDisponivel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.listBoxDisponivel_MouseMove);
+            this.filtroLimparButton.Location = new System.Drawing.Point(358, 56);
+            this.filtroLimparButton.Name = "filtroLimparButton";
+            this.filtroLimparButton.Size = new System.Drawing.Size(56, 27);
+            this.filtroLimparButton.TabIndex = 11;
+            this.filtroLimparButton.Text = "LIMPAR";
+            this.filtroLimparButton.UseVisualStyleBackColor = true;
+            this.filtroLimparButton.Click += new System.EventHandler(this.filtroLimparButton_Click);
             // 
-            // textBoxBuscar
+            // filtroConsultarButton
             // 
-            this.tableLayoutPanelHinos.SetColumnSpan(this.textBoxBuscar, 2);
-            this.textBoxBuscar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxBuscar.Location = new System.Drawing.Point(51, 3);
-            this.textBoxBuscar.Name = "textBoxBuscar";
-            this.textBoxBuscar.Size = new System.Drawing.Size(212, 20);
-            this.textBoxBuscar.TabIndex = 0;
-            this.textBoxBuscar.TextChanged += new System.EventHandler(this.textBoxBuscar_TextChanged);
-            this.textBoxBuscar.Enter += new System.EventHandler(this.textBoxBuscar_Enter);
+            this.filtroConsultarButton.Location = new System.Drawing.Point(269, 56);
+            this.filtroConsultarButton.Name = "filtroConsultarButton";
+            this.filtroConsultarButton.Size = new System.Drawing.Size(83, 27);
+            this.filtroConsultarButton.TabIndex = 10;
+            this.filtroConsultarButton.Text = "CONSULTAR";
+            this.filtroConsultarButton.UseVisualStyleBackColor = true;
+            this.filtroConsultarButton.Click += new System.EventHandler(this.filtroConsultarButton_Click);
             // 
-            // labelTitulo
+            // filtroLetraTextBox
             // 
-            this.labelTitulo.AutoSize = true;
-            this.labelTitulo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelTitulo.Location = new System.Drawing.Point(3, 0);
-            this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(42, 27);
-            this.labelTitulo.TabIndex = 0;
-            this.labelTitulo.Text = "Título:";
-            this.labelTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.filtroLetraTextBox.Location = new System.Drawing.Point(53, 59);
+            this.filtroLetraTextBox.Name = "filtroLetraTextBox";
+            this.filtroLetraTextBox.Size = new System.Drawing.Size(209, 20);
+            this.filtroLetraTextBox.TabIndex = 5;
+            this.filtroLetraTextBox.Enter += new System.EventHandler(this.textBoxSelecionar_Enter);
             // 
-            // buttonAtualizarBaseHinos
+            // filtroTituloTextBox
             // 
-            this.buttonAtualizarBaseHinos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAtualizarBaseHinos.Image = global::Apresentacao.Properties.Resources.arrow_refresh_small;
-            this.buttonAtualizarBaseHinos.Location = new System.Drawing.Point(226, 271);
-            this.buttonAtualizarBaseHinos.Name = "buttonAtualizarBaseHinos";
-            this.buttonAtualizarBaseHinos.Size = new System.Drawing.Size(37, 34);
-            this.buttonAtualizarBaseHinos.TabIndex = 5;
-            this.buttonAtualizarBaseHinos.UseVisualStyleBackColor = true;
-            this.buttonAtualizarBaseHinos.Click += new System.EventHandler(this.buttonAtualizarBaseHinos_Click);
+            this.filtroTituloTextBox.Location = new System.Drawing.Point(53, 33);
+            this.filtroTituloTextBox.Name = "filtroTituloTextBox";
+            this.filtroTituloTextBox.Size = new System.Drawing.Size(209, 20);
+            this.filtroTituloTextBox.TabIndex = 3;
+            this.filtroTituloTextBox.Enter += new System.EventHandler(this.textBoxSelecionar_Enter);
+            // 
+            // filtroArtistaComboBox
+            // 
+            this.filtroArtistaComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.filtroArtistaComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.filtroArtistaComboBox.FormattingEnabled = true;
+            this.filtroArtistaComboBox.Location = new System.Drawing.Point(53, 6);
+            this.filtroArtistaComboBox.Name = "filtroArtistaComboBox";
+            this.filtroArtistaComboBox.Size = new System.Drawing.Size(209, 21);
+            this.filtroArtistaComboBox.TabIndex = 1;
+            // 
+            // filtroHistoricoDateTimePickerFim
+            // 
+            this.filtroHistoricoDateTimePickerFim.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.filtroHistoricoDateTimePickerFim.Location = new System.Drawing.Point(397, 33);
+            this.filtroHistoricoDateTimePickerFim.Name = "filtroHistoricoDateTimePickerFim";
+            this.filtroHistoricoDateTimePickerFim.Size = new System.Drawing.Size(96, 20);
+            this.filtroHistoricoDateTimePickerFim.TabIndex = 9;
+            // 
+            // filtroHistoricoDateTimePickerInicio
+            // 
+            this.filtroHistoricoDateTimePickerInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.filtroHistoricoDateTimePickerInicio.Location = new System.Drawing.Point(268, 33);
+            this.filtroHistoricoDateTimePickerInicio.Name = "filtroHistoricoDateTimePickerInicio";
+            this.filtroHistoricoDateTimePickerInicio.Size = new System.Drawing.Size(96, 20);
+            this.filtroHistoricoDateTimePickerInicio.TabIndex = 7;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(369, 36);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(22, 13);
+            this.label15.TabIndex = 8;
+            this.label15.Text = "até";
+            // 
+            // labelFiltroLetra
+            // 
+            this.labelFiltroLetra.AutoSize = true;
+            this.labelFiltroLetra.Location = new System.Drawing.Point(8, 63);
+            this.labelFiltroLetra.Name = "labelFiltroLetra";
+            this.labelFiltroLetra.Size = new System.Drawing.Size(34, 13);
+            this.labelFiltroLetra.TabIndex = 4;
+            this.labelFiltroLetra.Text = "Letra:";
+            // 
+            // labelFiltroTitulo
+            // 
+            this.labelFiltroTitulo.AutoSize = true;
+            this.labelFiltroTitulo.Location = new System.Drawing.Point(8, 36);
+            this.labelFiltroTitulo.Name = "labelFiltroTitulo";
+            this.labelFiltroTitulo.Size = new System.Drawing.Size(36, 13);
+            this.labelFiltroTitulo.TabIndex = 2;
+            this.labelFiltroTitulo.Text = "Titulo:";
+            // 
+            // labelFiltroArtista
+            // 
+            this.labelFiltroArtista.AutoSize = true;
+            this.labelFiltroArtista.Location = new System.Drawing.Point(8, 9);
+            this.labelFiltroArtista.Name = "labelFiltroArtista";
+            this.labelFiltroArtista.Size = new System.Drawing.Size(39, 13);
+            this.labelFiltroArtista.TabIndex = 0;
+            this.labelFiltroArtista.Text = "Artista:";
+            // 
+            // filtroDataGridView
+            // 
+            this.filtroDataGridView.AllowUserToAddRows = false;
+            this.filtroDataGridView.AllowUserToDeleteRows = false;
+            this.filtroDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.filtroDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Codigo,
+            this.ColumnArtista,
+            this.ColumnNome});
+            this.tableLayoutPanelHinos.SetColumnSpan(this.filtroDataGridView, 2);
+            this.filtroDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.filtroDataGridView.Location = new System.Drawing.Point(3, 95);
+            this.filtroDataGridView.Name = "filtroDataGridView";
+            this.filtroDataGridView.ReadOnly = true;
+            this.tableLayoutPanelHinos.SetRowSpan(this.filtroDataGridView, 2);
+            this.filtroDataGridView.Size = new System.Drawing.Size(497, 127);
+            this.filtroDataGridView.TabIndex = 0;
+            this.filtroDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.filtroDataGridView_CellClick);
+            this.filtroDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.filtroDataGridView_CellDoubleClick);
+            // 
+            // Codigo
+            // 
+            this.Codigo.HeaderText = "ColumnCodigo";
+            this.Codigo.Name = "Codigo";
+            this.Codigo.ReadOnly = true;
+            this.Codigo.Visible = false;
+            // 
+            // ColumnArtista
+            // 
+            this.ColumnArtista.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ColumnArtista.HeaderText = "Artista";
+            this.ColumnArtista.Name = "ColumnArtista";
+            this.ColumnArtista.ReadOnly = true;
+            // 
+            // ColumnNome
+            // 
+            this.ColumnNome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnNome.HeaderText = "Titulo";
+            this.ColumnNome.Name = "ColumnNome";
+            this.ColumnNome.ReadOnly = true;
             // 
             // groupBoxSelecionadas
             // 
             this.groupBoxSelecionadas.Controls.Add(this.tableLayoutPanelSelecionadas);
             this.groupBoxSelecionadas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxSelecionadas.Location = new System.Drawing.Point(281, 369);
+            this.groupBoxSelecionadas.Location = new System.Drawing.Point(259, 253);
             this.groupBoxSelecionadas.Name = "groupBoxSelecionadas";
-            this.tableLayoutPanelPrincipal.SetRowSpan(this.groupBoxSelecionadas, 2);
-            this.groupBoxSelecionadas.Size = new System.Drawing.Size(247, 248);
-            this.groupBoxSelecionadas.TabIndex = 5;
+            this.tableLayoutPanelEsquerda.SetRowSpan(this.groupBoxSelecionadas, 3);
+            this.groupBoxSelecionadas.Size = new System.Drawing.Size(253, 294);
+            this.groupBoxSelecionadas.TabIndex = 4;
             this.groupBoxSelecionadas.TabStop = false;
-            this.groupBoxSelecionadas.Text = "Itens selecionados";
+            this.groupBoxSelecionadas.Text = "Apresentações selecionadas";
             // 
             // tableLayoutPanelSelecionadas
             // 
             this.tableLayoutPanelSelecionadas.ColumnCount = 2;
-            this.tableLayoutPanelSelecionadas.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelSelecionadas.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelSelecionadas.Controls.Add(this.buttonMostrarApresentacao, 1, 1);
-            this.tableLayoutPanelSelecionadas.Controls.Add(this.listBoxSelecionado, 0, 0);
-            this.tableLayoutPanelSelecionadas.Controls.Add(this.buttonRemover, 0, 1);
+            this.tableLayoutPanelSelecionadas.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.5587F));
+            this.tableLayoutPanelSelecionadas.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.4413F));
+            this.tableLayoutPanelSelecionadas.Controls.Add(this.comboBoxTemplate, 0, 1);
+            this.tableLayoutPanelSelecionadas.Controls.Add(this.listBoxSelecionado, 0, 2);
+            this.tableLayoutPanelSelecionadas.Controls.Add(this.buttonRemover, 0, 3);
+            this.tableLayoutPanelSelecionadas.Controls.Add(this.label10, 0, 0);
+            this.tableLayoutPanelSelecionadas.Controls.Add(this.buttonMostrarApresentacao, 1, 3);
             this.tableLayoutPanelSelecionadas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelSelecionadas.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanelSelecionadas.Name = "tableLayoutPanelSelecionadas";
-            this.tableLayoutPanelSelecionadas.RowCount = 2;
+            this.tableLayoutPanelSelecionadas.RowCount = 4;
+            this.tableLayoutPanelSelecionadas.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 19F));
+            this.tableLayoutPanelSelecionadas.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanelSelecionadas.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanelSelecionadas.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
-            this.tableLayoutPanelSelecionadas.Size = new System.Drawing.Size(241, 229);
+            this.tableLayoutPanelSelecionadas.Size = new System.Drawing.Size(247, 275);
             this.tableLayoutPanelSelecionadas.TabIndex = 2;
             // 
             // listBoxSelecionado
             // 
-            this.listBoxSelecionado.AllowDrop = true;
             this.tableLayoutPanelSelecionadas.SetColumnSpan(this.listBoxSelecionado, 2);
             this.listBoxSelecionado.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBoxSelecionado.FormattingEnabled = true;
-            this.listBoxSelecionado.Location = new System.Drawing.Point(3, 3);
+            this.listBoxSelecionado.Location = new System.Drawing.Point(3, 50);
             this.listBoxSelecionado.Name = "listBoxSelecionado";
-            this.listBoxSelecionado.Size = new System.Drawing.Size(235, 179);
+            this.listBoxSelecionado.Size = new System.Drawing.Size(241, 178);
             this.listBoxSelecionado.TabIndex = 0;
             this.listBoxSelecionado.SelectedIndexChanged += new System.EventHandler(this.listBoxSelecionado_SelectedIndexChanged);
-            this.listBoxSelecionado.DragDrop += new System.Windows.Forms.DragEventHandler(this.incluirItem_DragDrop);
-            this.listBoxSelecionado.DragEnter += new System.Windows.Forms.DragEventHandler(this.incluirItem_DragEnter);
             this.listBoxSelecionado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxSelecionado_KeyDown);
             this.listBoxSelecionado.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxSelecionado_MouseDoubleClick);
             // 
             // buttonRemover
             // 
-            this.buttonRemover.Location = new System.Drawing.Point(3, 188);
+            this.buttonRemover.Location = new System.Drawing.Point(3, 234);
             this.buttonRemover.Name = "buttonRemover";
             this.buttonRemover.Size = new System.Drawing.Size(88, 34);
             this.buttonRemover.TabIndex = 1;
             this.buttonRemover.Text = "Remover";
             this.buttonRemover.UseVisualStyleBackColor = true;
             this.buttonRemover.Click += new System.EventHandler(this.buttonRemover_Click);
+            // 
+            // label10
+            // 
+            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label10.Location = new System.Drawing.Point(3, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(108, 19);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Template:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // buttonIncluirPowerpoint
+            // 
+            this.buttonIncluirPowerpoint.Location = new System.Drawing.Point(109, 234);
+            this.buttonIncluirPowerpoint.Name = "buttonIncluirPowerpoint";
+            this.buttonIncluirPowerpoint.Size = new System.Drawing.Size(88, 50);
+            this.buttonIncluirPowerpoint.TabIndex = 1;
+            this.buttonIncluirPowerpoint.Text = "Importar PowerPoint";
+            this.buttonIncluirPowerpoint.UseVisualStyleBackColor = true;
+            this.buttonIncluirPowerpoint.Click += new System.EventHandler(this.buttonIncluirPowerpoint_Click);
             // 
             // groupBoxAvisos
             // 
@@ -337,10 +443,11 @@
             this.groupBoxAvisos.Controls.Add(this.buttonIncluirAviso);
             this.groupBoxAvisos.Controls.Add(this.textBoxAvisos);
             this.groupBoxAvisos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxAvisos.Location = new System.Drawing.Point(281, 174);
+            this.groupBoxAvisos.Location = new System.Drawing.Point(3, 253);
             this.groupBoxAvisos.Name = "groupBoxAvisos";
-            this.groupBoxAvisos.Size = new System.Drawing.Size(247, 189);
-            this.groupBoxAvisos.TabIndex = 3;
+            this.tableLayoutPanelEsquerda.SetRowSpan(this.groupBoxAvisos, 2);
+            this.groupBoxAvisos.Size = new System.Drawing.Size(250, 176);
+            this.groupBoxAvisos.TabIndex = 1;
             this.groupBoxAvisos.TabStop = false;
             this.groupBoxAvisos.Text = "Avisos";
             // 
@@ -356,9 +463,9 @@
             // buttonMostrarAviso
             // 
             this.buttonMostrarAviso.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonMostrarAviso.Location = new System.Drawing.Point(162, 152);
+            this.buttonMostrarAviso.Location = new System.Drawing.Point(89, 139);
             this.buttonMostrarAviso.Name = "buttonMostrarAviso";
-            this.buttonMostrarAviso.Size = new System.Drawing.Size(78, 30);
+            this.buttonMostrarAviso.Size = new System.Drawing.Size(65, 30);
             this.buttonMostrarAviso.TabIndex = 3;
             this.buttonMostrarAviso.Text = "Mostrar";
             this.buttonMostrarAviso.UseVisualStyleBackColor = true;
@@ -375,9 +482,9 @@
             // 
             // buttonLimparAviso
             // 
-            this.buttonLimparAviso.Location = new System.Drawing.Point(87, 152);
+            this.buttonLimparAviso.Location = new System.Drawing.Point(160, 139);
             this.buttonLimparAviso.Name = "buttonLimparAviso";
-            this.buttonLimparAviso.Size = new System.Drawing.Size(68, 30);
+            this.buttonLimparAviso.Size = new System.Drawing.Size(78, 30);
             this.buttonLimparAviso.TabIndex = 4;
             this.buttonLimparAviso.Text = "Limpar";
             this.buttonLimparAviso.UseVisualStyleBackColor = true;
@@ -385,7 +492,7 @@
             // 
             // buttonIncluirAviso
             // 
-            this.buttonIncluirAviso.Location = new System.Drawing.Point(3, 152);
+            this.buttonIncluirAviso.Location = new System.Drawing.Point(5, 139);
             this.buttonIncluirAviso.Name = "buttonIncluirAviso";
             this.buttonIncluirAviso.Size = new System.Drawing.Size(78, 30);
             this.buttonIncluirAviso.TabIndex = 2;
@@ -398,31 +505,153 @@
             this.textBoxAvisos.Location = new System.Drawing.Point(6, 46);
             this.textBoxAvisos.Multiline = true;
             this.textBoxAvisos.Name = "textBoxAvisos";
-            this.textBoxAvisos.Size = new System.Drawing.Size(233, 100);
+            this.textBoxAvisos.Size = new System.Drawing.Size(233, 87);
             this.textBoxAvisos.TabIndex = 1;
             // 
-            // buttonNovoHino
+            // groupBoxFerramentas
             // 
-            this.buttonNovoHino.Location = new System.Drawing.Point(3, 276);
-            this.buttonNovoHino.Name = "buttonNovoHino";
-            this.buttonNovoHino.Size = new System.Drawing.Size(88, 30);
-            this.buttonNovoHino.TabIndex = 1;
-            this.buttonNovoHino.Text = "Novo Hino";
-            this.buttonNovoHino.UseVisualStyleBackColor = true;
-            this.buttonNovoHino.Click += new System.EventHandler(this.buttonNovoHino_Click);
+            this.groupBoxFerramentas.Controls.Add(this.panel2);
+            this.groupBoxFerramentas.Controls.Add(this.panel1);
+            this.groupBoxFerramentas.Controls.Add(this.buttonSobre);
+            this.groupBoxFerramentas.Controls.Add(this.buttonIncluirPowerpoint);
+            this.groupBoxFerramentas.Controls.Add(this.buttonSalvarPowerpoint);
+            this.groupBoxFerramentas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxFerramentas.Location = new System.Drawing.Point(3, 255);
+            this.groupBoxFerramentas.Name = "groupBoxFerramentas";
+            this.groupBoxFerramentas.Size = new System.Drawing.Size(302, 292);
+            this.groupBoxFerramentas.TabIndex = 6;
+            this.groupBoxFerramentas.TabStop = false;
+            this.groupBoxFerramentas.Text = "Ferramentas";
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.checkBoxCarregaHinoAuto);
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Location = new System.Drawing.Point(13, 115);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(278, 113);
+            this.panel2.TabIndex = 4;
+            // 
+            // checkBoxCarregaHinoAuto
+            // 
+            this.checkBoxCarregaHinoAuto.Checked = true;
+            this.checkBoxCarregaHinoAuto.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxCarregaHinoAuto.Location = new System.Drawing.Point(11, 20);
+            this.checkBoxCarregaHinoAuto.Name = "checkBoxCarregaHinoAuto";
+            this.checkBoxCarregaHinoAuto.Size = new System.Drawing.Size(210, 46);
+            this.checkBoxCarregaHinoAuto.TabIndex = 1;
+            this.checkBoxCarregaHinoAuto.Text = "Carregar letra dos hinos disponiveis no campo Apresentação Selecionada";
+            this.checkBoxCarregaHinoAuto.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(3, 5);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(63, 13);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Aplicativo";
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.textBoxTamanhoFonte);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Location = new System.Drawing.Point(13, 24);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(278, 85);
+            this.panel1.TabIndex = 3;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(3, 9);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(71, 13);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "PowerPoint";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Fonte:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 55);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Tamanho:";
+            // 
+            // textBoxTamanhoFonte
+            // 
+            this.textBoxTamanhoFonte.Location = new System.Drawing.Point(64, 52);
+            this.textBoxTamanhoFonte.Name = "textBoxTamanhoFonte";
+            this.textBoxTamanhoFonte.Size = new System.Drawing.Size(24, 20);
+            this.textBoxTamanhoFonte.TabIndex = 4;
+            this.textBoxTamanhoFonte.Text = "32";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(94, 55);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(18, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "px";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(61, 32);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(27, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Arial";
+            // 
+            // buttonSobre
+            // 
+            this.buttonSobre.Location = new System.Drawing.Point(203, 234);
+            this.buttonSobre.Name = "buttonSobre";
+            this.buttonSobre.Size = new System.Drawing.Size(88, 50);
+            this.buttonSobre.TabIndex = 2;
+            this.buttonSobre.Text = "Sobre o Programa";
+            this.buttonSobre.UseVisualStyleBackColor = true;
+            this.buttonSobre.Click += new System.EventHandler(this.buttonSobre_Click);
+            // 
+            // buttonSalvarPowerpoint
+            // 
+            this.buttonSalvarPowerpoint.Location = new System.Drawing.Point(13, 234);
+            this.buttonSalvarPowerpoint.Name = "buttonSalvarPowerpoint";
+            this.buttonSalvarPowerpoint.Size = new System.Drawing.Size(90, 50);
+            this.buttonSalvarPowerpoint.TabIndex = 0;
+            this.buttonSalvarPowerpoint.Text = "Salvar Powerpoint";
+            this.buttonSalvarPowerpoint.UseVisualStyleBackColor = true;
+            this.buttonSalvarPowerpoint.Click += new System.EventHandler(this.buttonSalvarPowerpoint_Click);
             // 
             // groupBoxAtiva
             // 
             this.groupBoxAtiva.Controls.Add(this.tableLayoutPanelAtivo);
             this.groupBoxAtiva.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxAtiva.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.groupBoxAtiva.Location = new System.Drawing.Point(534, 33);
+            this.groupBoxAtiva.Location = new System.Drawing.Point(3, 3);
             this.groupBoxAtiva.Name = "groupBoxAtiva";
-            this.tableLayoutPanelPrincipal.SetRowSpan(this.groupBoxAtiva, 2);
-            this.groupBoxAtiva.Size = new System.Drawing.Size(305, 330);
-            this.groupBoxAtiva.TabIndex = 6;
+            this.groupBoxAtiva.Size = new System.Drawing.Size(302, 246);
+            this.groupBoxAtiva.TabIndex = 5;
             this.groupBoxAtiva.TabStop = false;
-            this.groupBoxAtiva.Text = "Item selecionado";
+            this.groupBoxAtiva.Text = "Apresentação Selecionada";
             // 
             // tableLayoutPanelAtivo
             // 
@@ -430,267 +659,102 @@
             this.tableLayoutPanelAtivo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanelAtivo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanelAtivo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelAtivo.Controls.Add(this.textBoxAtivo, 0, 0);
-            this.tableLayoutPanelAtivo.Controls.Add(this.buttonNovoHino, 0, 2);
-            this.tableLayoutPanelAtivo.Controls.Add(this.buttonSalvarHino, 1, 2);
-            this.tableLayoutPanelAtivo.Controls.Add(this.buttonRenomear, 2, 2);
-            this.tableLayoutPanelAtivo.Controls.Add(this.tableLayoutNavegacaoLinha, 0, 1);
+            this.tableLayoutPanelAtivo.Controls.Add(this.buttonNovoHino, 0, 1);
+            this.tableLayoutPanelAtivo.Controls.Add(this.buttonSalvarHino, 1, 1);
+            this.tableLayoutPanelAtivo.Controls.Add(this.panel3, 0, 0);
+            this.tableLayoutPanelAtivo.Controls.Add(this.textBoxAtivo, 1, 0);
             this.tableLayoutPanelAtivo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelAtivo.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanelAtivo.Name = "tableLayoutPanelAtivo";
             this.tableLayoutPanelAtivo.RowCount = 3;
+            this.tableLayoutPanelAtivo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 56F));
             this.tableLayoutPanelAtivo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelAtivo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tableLayoutPanelAtivo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tableLayoutPanelAtivo.Size = new System.Drawing.Size(299, 311);
+            this.tableLayoutPanelAtivo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutPanelAtivo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 79F));
+            this.tableLayoutPanelAtivo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 87F));
+            this.tableLayoutPanelAtivo.Size = new System.Drawing.Size(296, 227);
             this.tableLayoutPanelAtivo.TabIndex = 1;
+            // 
+            // buttonNovoHino
+            // 
+            this.buttonNovoHino.Location = new System.Drawing.Point(3, 194);
+            this.buttonNovoHino.Name = "buttonNovoHino";
+            this.buttonNovoHino.Size = new System.Drawing.Size(88, 26);
+            this.buttonNovoHino.TabIndex = 2;
+            this.buttonNovoHino.Text = "Novo Hino";
+            this.buttonNovoHino.UseVisualStyleBackColor = true;
+            this.buttonNovoHino.Click += new System.EventHandler(this.buttonNovoHino_Click);
+            // 
+            // buttonSalvarHino
+            // 
+            this.buttonSalvarHino.Enabled = false;
+            this.buttonSalvarHino.Location = new System.Drawing.Point(103, 194);
+            this.buttonSalvarHino.Name = "buttonSalvarHino";
+            this.buttonSalvarHino.Size = new System.Drawing.Size(88, 26);
+            this.buttonSalvarHino.TabIndex = 3;
+            this.buttonSalvarHino.Text = "Salvar";
+            this.buttonSalvarHino.UseVisualStyleBackColor = true;
+            this.buttonSalvarHino.Click += new System.EventHandler(this.buttonSalvarHino_Click);
+            // 
+            // panel3
+            // 
+            this.tableLayoutPanelAtivo.SetColumnSpan(this.panel3, 3);
+            this.panel3.Controls.Add(this.textBoxArtista);
+            this.panel3.Controls.Add(this.textBoxTitulo);
+            this.panel3.Controls.Add(this.labelTitulo);
+            this.panel3.Controls.Add(this.labelArtista);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(3, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(290, 50);
+            this.panel3.TabIndex = 0;
+            // 
+            // textBoxArtista
+            // 
+            this.textBoxArtista.Location = new System.Drawing.Point(55, 3);
+            this.textBoxArtista.Name = "textBoxArtista";
+            this.textBoxArtista.Size = new System.Drawing.Size(233, 20);
+            this.textBoxArtista.TabIndex = 2;
+            this.textBoxArtista.Enter += new System.EventHandler(this.textBoxSelecionar_Enter);
+            // 
+            // textBoxTitulo
+            // 
+            this.textBoxTitulo.Location = new System.Drawing.Point(55, 27);
+            this.textBoxTitulo.Name = "textBoxTitulo";
+            this.textBoxTitulo.Size = new System.Drawing.Size(233, 20);
+            this.textBoxTitulo.TabIndex = 2;
+            this.textBoxTitulo.Enter += new System.EventHandler(this.textBoxSelecionar_Enter);
+            // 
+            // labelTitulo
+            // 
+            this.labelTitulo.AutoSize = true;
+            this.labelTitulo.Location = new System.Drawing.Point(11, 30);
+            this.labelTitulo.Name = "labelTitulo";
+            this.labelTitulo.Size = new System.Drawing.Size(36, 13);
+            this.labelTitulo.TabIndex = 0;
+            this.labelTitulo.Text = "Titulo:";
+            // 
+            // labelArtista
+            // 
+            this.labelArtista.AutoSize = true;
+            this.labelArtista.Location = new System.Drawing.Point(11, 6);
+            this.labelArtista.Name = "labelArtista";
+            this.labelArtista.Size = new System.Drawing.Size(39, 13);
+            this.labelArtista.TabIndex = 0;
+            this.labelArtista.Text = "Artista:";
             // 
             // textBoxAtivo
             // 
             this.tableLayoutPanelAtivo.SetColumnSpan(this.textBoxAtivo, 3);
             this.textBoxAtivo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxAtivo.Location = new System.Drawing.Point(3, 3);
+            this.textBoxAtivo.Location = new System.Drawing.Point(3, 59);
             this.textBoxAtivo.Multiline = true;
             this.textBoxAtivo.Name = "textBoxAtivo";
-            this.textBoxAtivo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxAtivo.Size = new System.Drawing.Size(293, 230);
-            this.textBoxAtivo.TabIndex = 0;
-            this.textBoxAtivo.WordWrap = false;
-            this.textBoxAtivo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBoxAtivo_MouseClick);
-            this.textBoxAtivo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxAtivo_KeyUp);
-            // 
-            // buttonSalvarHino
-            // 
-            this.buttonSalvarHino.Enabled = false;
-            this.buttonSalvarHino.Location = new System.Drawing.Point(103, 276);
-            this.buttonSalvarHino.Name = "buttonSalvarHino";
-            this.buttonSalvarHino.Size = new System.Drawing.Size(88, 30);
-            this.buttonSalvarHino.TabIndex = 2;
-            this.buttonSalvarHino.Text = "Salvar";
-            this.buttonSalvarHino.UseVisualStyleBackColor = true;
-            this.buttonSalvarHino.Click += new System.EventHandler(this.buttonSalvarHino_Click);
-            // 
-            // buttonRenomear
-            // 
-            this.buttonRenomear.Enabled = false;
-            this.buttonRenomear.Location = new System.Drawing.Point(203, 276);
-            this.buttonRenomear.Name = "buttonRenomear";
-            this.buttonRenomear.Size = new System.Drawing.Size(88, 30);
-            this.buttonRenomear.TabIndex = 3;
-            this.buttonRenomear.Text = "Renomear";
-            this.buttonRenomear.UseVisualStyleBackColor = true;
-            this.buttonRenomear.Click += new System.EventHandler(this.buttonRenomear_Click);
-            // 
-            // tableLayoutNavegacaoLinha
-            // 
-            this.tableLayoutNavegacaoLinha.ColumnCount = 3;
-            this.tableLayoutPanelAtivo.SetColumnSpan(this.tableLayoutNavegacaoLinha, 3);
-            this.tableLayoutNavegacaoLinha.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutNavegacaoLinha.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutNavegacaoLinha.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutNavegacaoLinha.Controls.Add(this.buttonVoltarLinha, 0, 0);
-            this.tableLayoutNavegacaoLinha.Controls.Add(this.labelLinhaAtiva, 1, 0);
-            this.tableLayoutNavegacaoLinha.Controls.Add(this.buttonAvancarLinha, 2, 0);
-            this.tableLayoutNavegacaoLinha.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutNavegacaoLinha.Location = new System.Drawing.Point(3, 239);
-            this.tableLayoutNavegacaoLinha.Name = "tableLayoutNavegacaoLinha";
-            this.tableLayoutNavegacaoLinha.RowCount = 1;
-            this.tableLayoutNavegacaoLinha.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutNavegacaoLinha.Size = new System.Drawing.Size(293, 31);
-            this.tableLayoutNavegacaoLinha.TabIndex = 4;
-            // 
-            // buttonVoltarLinha
-            // 
-            this.buttonVoltarLinha.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonVoltarLinha.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonVoltarLinha.Image = global::Apresentacao.Properties.Resources.arrow_up;
-            this.buttonVoltarLinha.Location = new System.Drawing.Point(3, 3);
-            this.buttonVoltarLinha.Name = "buttonVoltarLinha";
-            this.buttonVoltarLinha.Size = new System.Drawing.Size(29, 25);
-            this.buttonVoltarLinha.TabIndex = 1;
-            this.buttonVoltarLinha.UseVisualStyleBackColor = true;
-            this.buttonVoltarLinha.Click += new System.EventHandler(this.buttonVoltarLinha_Click);
-            // 
-            // labelLinhaAtiva
-            // 
-            this.labelLinhaAtiva.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelLinhaAtiva.Location = new System.Drawing.Point(38, 0);
-            this.labelLinhaAtiva.Name = "labelLinhaAtiva";
-            this.labelLinhaAtiva.Size = new System.Drawing.Size(217, 31);
-            this.labelLinhaAtiva.TabIndex = 2;
-            this.labelLinhaAtiva.Text = "LINHA ATIVA";
-            this.labelLinhaAtiva.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // buttonAvancarLinha
-            // 
-            this.buttonAvancarLinha.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonAvancarLinha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonAvancarLinha.Image = global::Apresentacao.Properties.Resources.arrow_down;
-            this.buttonAvancarLinha.Location = new System.Drawing.Point(261, 3);
-            this.buttonAvancarLinha.Name = "buttonAvancarLinha";
-            this.buttonAvancarLinha.Size = new System.Drawing.Size(29, 25);
-            this.buttonAvancarLinha.TabIndex = 1;
-            this.buttonAvancarLinha.UseVisualStyleBackColor = true;
-            this.buttonAvancarLinha.Click += new System.EventHandler(this.buttonAvancarLinha_Click);
-            // 
-            // tableLayoutPanelPrincipal
-            // 
-            this.tableLayoutPanelPrincipal.ColumnCount = 3;
-            this.tableLayoutPanelPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 278F));
-            this.tableLayoutPanelPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 253F));
-            this.tableLayoutPanelPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelPrincipal.Controls.Add(this.groupBoxSlides, 0, 3);
-            this.tableLayoutPanelPrincipal.Controls.Add(this.groupBoxVMix, 2, 3);
-            this.tableLayoutPanelPrincipal.Controls.Add(this.groupBoxHinos, 0, 1);
-            this.tableLayoutPanelPrincipal.Controls.Add(this.groupBoxAtiva, 2, 1);
-            this.tableLayoutPanelPrincipal.Controls.Add(this.groupBoxSelecionadas, 1, 3);
-            this.tableLayoutPanelPrincipal.Controls.Add(this.groupBoxBiblia, 1, 1);
-            this.tableLayoutPanelPrincipal.Controls.Add(this.groupBoxAvisos, 1, 2);
-            this.tableLayoutPanelPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanelPrincipal.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanelPrincipal.Name = "tableLayoutPanelPrincipal";
-            this.tableLayoutPanelPrincipal.RowCount = 6;
-            this.tableLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 141F));
-            this.tableLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 195F));
-            this.tableLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 51F));
-            this.tableLayoutPanelPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanelPrincipal.Size = new System.Drawing.Size(842, 640);
-            this.tableLayoutPanelPrincipal.TabIndex = 0;
-            // 
-            // groupBoxSlides
-            // 
-            this.groupBoxSlides.Controls.Add(this.listBoxSlides);
-            this.groupBoxSlides.Controls.Add(this.checkBoxEnviarCopia);
-            this.groupBoxSlides.Controls.Add(this.checkBoxGerarImagem);
-            this.groupBoxSlides.Controls.Add(this.textBoxLocalSalvarImagem);
-            this.groupBoxSlides.Controls.Add(this.pictureBoxSlide);
-            this.groupBoxSlides.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxSlides.Location = new System.Drawing.Point(3, 369);
-            this.groupBoxSlides.Name = "groupBoxSlides";
-            this.tableLayoutPanelPrincipal.SetRowSpan(this.groupBoxSlides, 2);
-            this.groupBoxSlides.Size = new System.Drawing.Size(272, 248);
-            this.groupBoxSlides.TabIndex = 7;
-            this.groupBoxSlides.TabStop = false;
-            this.groupBoxSlides.Text = "Exportar Slides";
-            // 
-            // listBoxSlides
-            // 
-            this.listBoxSlides.FormattingEnabled = true;
-            this.listBoxSlides.Location = new System.Drawing.Point(196, 24);
-            this.listBoxSlides.Name = "listBoxSlides";
-            this.listBoxSlides.Size = new System.Drawing.Size(70, 147);
-            this.listBoxSlides.TabIndex = 5;
-            this.listBoxSlides.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBoxSlides_MouseClick);
-            this.listBoxSlides.SelectedIndexChanged += new System.EventHandler(this.listBoxSlides_SelectedIndexChanged);
-            // 
-            // checkBoxEnviarCopia
-            // 
-            this.checkBoxEnviarCopia.AutoSize = true;
-            this.checkBoxEnviarCopia.Location = new System.Drawing.Point(9, 200);
-            this.checkBoxEnviarCopia.Name = "checkBoxEnviarCopia";
-            this.checkBoxEnviarCopia.Size = new System.Drawing.Size(166, 17);
-            this.checkBoxEnviarCopia.TabIndex = 3;
-            this.checkBoxEnviarCopia.Text = "Enviar cópia da imagem para:";
-            this.checkBoxEnviarCopia.UseVisualStyleBackColor = true;
-            this.checkBoxEnviarCopia.CheckedChanged += new System.EventHandler(this.checkBoxEnviarCopia_CheckedChanged);
-            // 
-            // checkBoxGerarImagem
-            // 
-            this.checkBoxGerarImagem.AutoSize = true;
-            this.checkBoxGerarImagem.Location = new System.Drawing.Point(9, 177);
-            this.checkBoxGerarImagem.Name = "checkBoxGerarImagem";
-            this.checkBoxGerarImagem.Size = new System.Drawing.Size(206, 17);
-            this.checkBoxGerarImagem.TabIndex = 3;
-            this.checkBoxGerarImagem.Text = "Gerar imagem ao invés de PowerPoint";
-            this.checkBoxGerarImagem.UseVisualStyleBackColor = true;
-            this.checkBoxGerarImagem.CheckedChanged += new System.EventHandler(this.checkBoxGerarImagem_CheckedChanged);
-            // 
-            // textBoxLocalSalvarImagem
-            // 
-            this.textBoxLocalSalvarImagem.Location = new System.Drawing.Point(9, 220);
-            this.textBoxLocalSalvarImagem.Name = "textBoxLocalSalvarImagem";
-            this.textBoxLocalSalvarImagem.Size = new System.Drawing.Size(257, 20);
-            this.textBoxLocalSalvarImagem.TabIndex = 2;
-            // 
-            // pictureBoxSlide
-            // 
-            this.pictureBoxSlide.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxSlide.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxSlide.Image")));
-            this.pictureBoxSlide.Location = new System.Drawing.Point(9, 24);
-            this.pictureBoxSlide.Name = "pictureBoxSlide";
-            this.pictureBoxSlide.Size = new System.Drawing.Size(181, 147);
-            this.pictureBoxSlide.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxSlide.TabIndex = 0;
-            this.pictureBoxSlide.TabStop = false;
-            // 
-            // groupBoxVMix
-            // 
-            this.groupBoxVMix.Controls.Add(this.tableLayoutPanel1);
-            this.groupBoxVMix.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxVMix.Location = new System.Drawing.Point(534, 369);
-            this.groupBoxVMix.Name = "groupBoxVMix";
-            this.tableLayoutPanelPrincipal.SetRowSpan(this.groupBoxVMix, 2);
-            this.groupBoxVMix.Size = new System.Drawing.Size(305, 248);
-            this.groupBoxVMix.TabIndex = 0;
-            this.groupBoxVMix.TabStop = false;
-            this.groupBoxVMix.Text = "Navegador (vMix)";
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.tableLayoutPanel1.Controls.Add(this.button4, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.webBrowserVMix, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.textBoxVMixURL, 0, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 16);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(299, 229);
-            this.tableLayoutPanel1.TabIndex = 7;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(265, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(31, 23);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "IR";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // webBrowserVMix
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.webBrowserVMix, 2);
-            this.webBrowserVMix.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowserVMix.Location = new System.Drawing.Point(3, 32);
-            this.webBrowserVMix.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowserVMix.Name = "webBrowserVMix";
-            this.webBrowserVMix.Size = new System.Drawing.Size(293, 194);
-            this.webBrowserVMix.TabIndex = 0;
-            this.webBrowserVMix.Url = new System.Uri("http://127.0.0.1:8088/", System.UriKind.Absolute);
-            // 
-            // textBoxVMixURL
-            // 
-            this.textBoxVMixURL.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxVMixURL.Location = new System.Drawing.Point(3, 3);
-            this.textBoxVMixURL.Name = "textBoxVMixURL";
-            this.textBoxVMixURL.Size = new System.Drawing.Size(256, 20);
-            this.textBoxVMixURL.TabIndex = 1;
-            this.textBoxVMixURL.Text = "http://127.0.0.1:8088/";
+            this.textBoxAtivo.Size = new System.Drawing.Size(290, 129);
+            this.textBoxAtivo.TabIndex = 1;
             // 
             // groupBoxBiblia
             // 
-            this.groupBoxBiblia.Controls.Add(this.buttonHistoricoBiblia5);
-            this.groupBoxBiblia.Controls.Add(this.buttonHistoricoBiblia4);
-            this.groupBoxBiblia.Controls.Add(this.buttonHistoricoBiblia3);
-            this.groupBoxBiblia.Controls.Add(this.buttonHistoricoBiblia2);
-            this.groupBoxBiblia.Controls.Add(this.buttonHistoricoBiblia1);
             this.groupBoxBiblia.Controls.Add(this.buttonBibliaMostrar);
             this.groupBoxBiblia.Controls.Add(this.buttonBibliaAdicionar);
             this.groupBoxBiblia.Controls.Add(this.label9);
@@ -700,85 +764,19 @@
             this.groupBoxBiblia.Controls.Add(this.textBoxBibliaCapitulo);
             this.groupBoxBiblia.Controls.Add(this.comboBoxBibliaLivro);
             this.groupBoxBiblia.Controls.Add(this.comboBoxBibliaTraducao);
-            this.groupBoxBiblia.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBoxBiblia.Location = new System.Drawing.Point(281, 33);
+            this.groupBoxBiblia.Location = new System.Drawing.Point(3, 435);
             this.groupBoxBiblia.Name = "groupBoxBiblia";
-            this.groupBoxBiblia.Size = new System.Drawing.Size(247, 135);
-            this.groupBoxBiblia.TabIndex = 4;
+            this.groupBoxBiblia.Size = new System.Drawing.Size(247, 112);
+            this.groupBoxBiblia.TabIndex = 2;
             this.groupBoxBiblia.TabStop = false;
             this.groupBoxBiblia.Text = "Bíblia";
-            // 
-            // buttonHistoricoBiblia5
-            // 
-            this.buttonHistoricoBiblia5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.buttonHistoricoBiblia5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonHistoricoBiblia5.Location = new System.Drawing.Point(199, 102);
-            this.buttonHistoricoBiblia5.Name = "buttonHistoricoBiblia5";
-            this.buttonHistoricoBiblia5.Size = new System.Drawing.Size(37, 24);
-            this.buttonHistoricoBiblia5.TabIndex = 7;
-            this.buttonHistoricoBiblia5.Text = "5";
-            this.buttonHistoricoBiblia5.UseVisualStyleBackColor = false;
-            this.buttonHistoricoBiblia5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.buttonHistoricoBiblia_MouseDown);
-            this.buttonHistoricoBiblia5.MouseHover += new System.EventHandler(this.buttonHistoricoBiblia_MouseHover);
-            // 
-            // buttonHistoricoBiblia4
-            // 
-            this.buttonHistoricoBiblia4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.buttonHistoricoBiblia4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonHistoricoBiblia4.Location = new System.Drawing.Point(151, 102);
-            this.buttonHistoricoBiblia4.Name = "buttonHistoricoBiblia4";
-            this.buttonHistoricoBiblia4.Size = new System.Drawing.Size(37, 24);
-            this.buttonHistoricoBiblia4.TabIndex = 7;
-            this.buttonHistoricoBiblia4.Text = "4";
-            this.buttonHistoricoBiblia4.UseVisualStyleBackColor = false;
-            this.buttonHistoricoBiblia4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.buttonHistoricoBiblia_MouseDown);
-            this.buttonHistoricoBiblia4.MouseHover += new System.EventHandler(this.buttonHistoricoBiblia_MouseHover);
-            // 
-            // buttonHistoricoBiblia3
-            // 
-            this.buttonHistoricoBiblia3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.buttonHistoricoBiblia3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonHistoricoBiblia3.Location = new System.Drawing.Point(103, 102);
-            this.buttonHistoricoBiblia3.Name = "buttonHistoricoBiblia3";
-            this.buttonHistoricoBiblia3.Size = new System.Drawing.Size(37, 24);
-            this.buttonHistoricoBiblia3.TabIndex = 7;
-            this.buttonHistoricoBiblia3.Text = "3";
-            this.buttonHistoricoBiblia3.UseVisualStyleBackColor = false;
-            this.buttonHistoricoBiblia3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.buttonHistoricoBiblia_MouseDown);
-            this.buttonHistoricoBiblia3.MouseHover += new System.EventHandler(this.buttonHistoricoBiblia_MouseHover);
-            // 
-            // buttonHistoricoBiblia2
-            // 
-            this.buttonHistoricoBiblia2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.buttonHistoricoBiblia2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonHistoricoBiblia2.Location = new System.Drawing.Point(55, 102);
-            this.buttonHistoricoBiblia2.Name = "buttonHistoricoBiblia2";
-            this.buttonHistoricoBiblia2.Size = new System.Drawing.Size(37, 24);
-            this.buttonHistoricoBiblia2.TabIndex = 7;
-            this.buttonHistoricoBiblia2.Text = "2";
-            this.buttonHistoricoBiblia2.UseVisualStyleBackColor = false;
-            this.buttonHistoricoBiblia2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.buttonHistoricoBiblia_MouseDown);
-            this.buttonHistoricoBiblia2.MouseHover += new System.EventHandler(this.buttonHistoricoBiblia_MouseHover);
-            // 
-            // buttonHistoricoBiblia1
-            // 
-            this.buttonHistoricoBiblia1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.buttonHistoricoBiblia1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonHistoricoBiblia1.Location = new System.Drawing.Point(7, 102);
-            this.buttonHistoricoBiblia1.Name = "buttonHistoricoBiblia1";
-            this.buttonHistoricoBiblia1.Size = new System.Drawing.Size(37, 24);
-            this.buttonHistoricoBiblia1.TabIndex = 7;
-            this.buttonHistoricoBiblia1.Text = "1";
-            this.buttonHistoricoBiblia1.UseVisualStyleBackColor = false;
-            this.buttonHistoricoBiblia1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.buttonHistoricoBiblia_MouseDown);
-            this.buttonHistoricoBiblia1.MouseHover += new System.EventHandler(this.buttonHistoricoBiblia_MouseHover);
             // 
             // buttonBibliaMostrar
             // 
             this.buttonBibliaMostrar.Location = new System.Drawing.Point(89, 73);
             this.buttonBibliaMostrar.Name = "buttonBibliaMostrar";
-            this.buttonBibliaMostrar.Size = new System.Drawing.Size(65, 22);
-            this.buttonBibliaMostrar.TabIndex = 6;
+            this.buttonBibliaMostrar.Size = new System.Drawing.Size(65, 30);
+            this.buttonBibliaMostrar.TabIndex = 5;
             this.buttonBibliaMostrar.Text = "Motrar";
             this.buttonBibliaMostrar.UseVisualStyleBackColor = true;
             this.buttonBibliaMostrar.Click += new System.EventHandler(this.buttonBibliaMostrar_Click);
@@ -787,8 +785,8 @@
             // 
             this.buttonBibliaAdicionar.Location = new System.Drawing.Point(7, 73);
             this.buttonBibliaAdicionar.Name = "buttonBibliaAdicionar";
-            this.buttonBibliaAdicionar.Size = new System.Drawing.Size(77, 22);
-            this.buttonBibliaAdicionar.TabIndex = 5;
+            this.buttonBibliaAdicionar.Size = new System.Drawing.Size(77, 30);
+            this.buttonBibliaAdicionar.TabIndex = 4;
             this.buttonBibliaAdicionar.Text = "Incluir";
             this.buttonBibliaAdicionar.UseVisualStyleBackColor = true;
             this.buttonBibliaAdicionar.Click += new System.EventHandler(this.buttonBibliaAdicionar_Click);
@@ -796,10 +794,10 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(160, 78);
+            this.label9.Location = new System.Drawing.Point(160, 81);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(44, 13);
-            this.label9.TabIndex = 3;
+            this.label9.TabIndex = 6;
             this.label9.Text = "Incluir +";
             // 
             // label8
@@ -813,26 +811,20 @@
             // 
             // textBoxBibliaVersiculoAdicional
             // 
-            this.textBoxBibliaVersiculoAdicional.Location = new System.Drawing.Point(207, 75);
+            this.textBoxBibliaVersiculoAdicional.Location = new System.Drawing.Point(207, 78);
             this.textBoxBibliaVersiculoAdicional.Name = "textBoxBibliaVersiculoAdicional";
             this.textBoxBibliaVersiculoAdicional.Size = new System.Drawing.Size(32, 20);
-            this.textBoxBibliaVersiculoAdicional.TabIndex = 4;
+            this.textBoxBibliaVersiculoAdicional.TabIndex = 7;
             this.textBoxBibliaVersiculoAdicional.Text = "5";
             this.textBoxBibliaVersiculoAdicional.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxBibliaVersiculoAdicional.WordWrap = false;
-            this.textBoxBibliaVersiculoAdicional.Enter += new System.EventHandler(this.textBoxSelectAll_Enter);
-            this.textBoxBibliaVersiculoAdicional.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxBibliaEnterKey_KeyUp);
             // 
             // textBoxBibliaVersiculo
             // 
             this.textBoxBibliaVersiculo.Location = new System.Drawing.Point(207, 46);
             this.textBoxBibliaVersiculo.Name = "textBoxBibliaVersiculo";
             this.textBoxBibliaVersiculo.Size = new System.Drawing.Size(32, 20);
-            this.textBoxBibliaVersiculo.TabIndex = 3;
+            this.textBoxBibliaVersiculo.TabIndex = 4;
             this.textBoxBibliaVersiculo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxBibliaVersiculo.WordWrap = false;
-            this.textBoxBibliaVersiculo.Enter += new System.EventHandler(this.textBoxSelectAll_Enter);
-            this.textBoxBibliaVersiculo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxBibliaEnterKey_KeyUp);
             // 
             // textBoxBibliaCapitulo
             // 
@@ -841,9 +833,6 @@
             this.textBoxBibliaCapitulo.Size = new System.Drawing.Size(35, 20);
             this.textBoxBibliaCapitulo.TabIndex = 2;
             this.textBoxBibliaCapitulo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBoxBibliaCapitulo.WordWrap = false;
-            this.textBoxBibliaCapitulo.Enter += new System.EventHandler(this.textBoxSelectAll_Enter);
-            this.textBoxBibliaCapitulo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxBibliaEnterKey_KeyUp);
             // 
             // comboBoxBibliaLivro
             // 
@@ -866,309 +855,107 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Apresentação do Powerpoint 97-2003|*.ppt|Apresentação do Powerpoint 2007|*.pptx";
             // 
-            // toolTipLetra
-            // 
-            this.toolTipLetra.AutoPopDelay = 5000;
-            this.toolTipLetra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.toolTipLetra.ForeColor = System.Drawing.Color.Black;
-            this.toolTipLetra.InitialDelay = 100;
-            this.toolTipLetra.ReshowDelay = 100;
-            this.toolTipLetra.UseAnimation = false;
-            this.toolTipLetra.UseFading = false;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripProgressBarMostrar,
-            this.toolStripStatusLabelStatus,
-            this.toolStripStatusLabelServer});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 618);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(842, 22);
-            this.statusStrip1.TabIndex = 1;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripProgressBarMostrar
-            // 
-            this.toolStripProgressBarMostrar.Name = "toolStripProgressBarMostrar";
-            this.toolStripProgressBarMostrar.Size = new System.Drawing.Size(100, 16);
-            this.toolStripProgressBarMostrar.Visible = false;
-            // 
-            // toolStripStatusLabelStatus
-            // 
-            this.toolStripStatusLabelStatus.Name = "toolStripStatusLabelStatus";
-            this.toolStripStatusLabelStatus.Size = new System.Drawing.Size(94, 17);
-            this.toolStripStatusLabelStatus.Text = "Status Programa";
-            // 
-            // toolStripStatusLabelServer
-            // 
-            this.toolStripStatusLabelServer.Name = "toolStripStatusLabelServer";
-            this.toolStripStatusLabelServer.Size = new System.Drawing.Size(85, 17);
-            this.toolStripStatusLabelServer.Text = "Status Servidor";
-            this.toolStripStatusLabelServer.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.arquivoToolStripMenuItem,
-            this.configuraçõesToolStripMenuItem,
-            this.visãoToolStripMenuItem,
-            this.ajudaToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.toolStripComboBoxTemplate});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(842, 27);
-            this.menuStrip1.TabIndex = 2;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // arquivoToolStripMenuItem
-            // 
-            this.arquivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.salvarPorwerPointToolStripMenuItem,
-            this.importarPowerPointToolStripMenuItem});
-            this.arquivoToolStripMenuItem.Name = "arquivoToolStripMenuItem";
-            this.arquivoToolStripMenuItem.Size = new System.Drawing.Size(61, 23);
-            this.arquivoToolStripMenuItem.Text = "Arquivo";
-            // 
-            // salvarPorwerPointToolStripMenuItem
-            // 
-            this.salvarPorwerPointToolStripMenuItem.Name = "salvarPorwerPointToolStripMenuItem";
-            this.salvarPorwerPointToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.salvarPorwerPointToolStripMenuItem.Text = "Salvar PorwerPoint";
-            this.salvarPorwerPointToolStripMenuItem.Click += new System.EventHandler(this.salvarPorwerPointToolStripMenuItem_Click);
-            // 
-            // importarPowerPointToolStripMenuItem
-            // 
-            this.importarPowerPointToolStripMenuItem.Name = "importarPowerPointToolStripMenuItem";
-            this.importarPowerPointToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.importarPowerPointToolStripMenuItem.Text = "Importar PowerPoint";
-            this.importarPowerPointToolStripMenuItem.Click += new System.EventHandler(this.importarPowerPointToolStripMenuItem_Click);
-            // 
-            // configuraçõesToolStripMenuItem
-            // 
-            this.configuraçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.powerPointToolStripMenuItem,
-            this.toolStripMenuItemExibirEm,
-            this.xAMLvMixToolStripMenuItem});
-            this.configuraçõesToolStripMenuItem.Name = "configuraçõesToolStripMenuItem";
-            this.configuraçõesToolStripMenuItem.Size = new System.Drawing.Size(96, 23);
-            this.configuraçõesToolStripMenuItem.Text = "Configurações";
-            // 
-            // powerPointToolStripMenuItem
-            // 
-            this.powerPointToolStripMenuItem.Name = "powerPointToolStripMenuItem";
-            this.powerPointToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.powerPointToolStripMenuItem.Text = "Power Point";
-            this.powerPointToolStripMenuItem.Click += new System.EventHandler(this.powerPointToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItemExibirEm
-            // 
-            this.toolStripMenuItemExibirEm.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tooltipToolStripMenuItem,
-            this.apresentaçãoSelecionadaToolStripMenuItem});
-            this.toolStripMenuItemExibirEm.Name = "toolStripMenuItemExibirEm";
-            this.toolStripMenuItemExibirEm.Size = new System.Drawing.Size(152, 22);
-            this.toolStripMenuItemExibirEm.Text = "Exibir hino em";
-            // 
-            // tooltipToolStripMenuItem
-            // 
-            this.tooltipToolStripMenuItem.Checked = true;
-            this.tooltipToolStripMenuItem.CheckOnClick = true;
-            this.tooltipToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.tooltipToolStripMenuItem.Name = "tooltipToolStripMenuItem";
-            this.tooltipToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
-            this.tooltipToolStripMenuItem.Text = "Tooltip";
-            // 
-            // apresentaçãoSelecionadaToolStripMenuItem
-            // 
-            this.apresentaçãoSelecionadaToolStripMenuItem.CheckOnClick = true;
-            this.apresentaçãoSelecionadaToolStripMenuItem.Name = "apresentaçãoSelecionadaToolStripMenuItem";
-            this.apresentaçãoSelecionadaToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
-            this.apresentaçãoSelecionadaToolStripMenuItem.Text = "Apresentação Selecionada";
-            // 
-            // xAMLvMixToolStripMenuItem
-            // 
-            this.xAMLvMixToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemAtivarSocket,
-            this.toolStripTextBoxIPSocket,
-            this.toolStripSeparator1,
-            this.ativaDesativaDebugToolStripMenuItem,
-            this.desativarListenerToolStripMenuItem,
-            this.limparTudoToolStripMenuItem});
-            this.xAMLvMixToolStripMenuItem.Name = "xAMLvMixToolStripMenuItem";
-            this.xAMLvMixToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.xAMLvMixToolStripMenuItem.Text = "vMix (XAML)";
-            // 
-            // toolStripMenuItemAtivarSocket
-            // 
-            this.toolStripMenuItemAtivarSocket.CheckOnClick = true;
-            this.toolStripMenuItemAtivarSocket.Name = "toolStripMenuItemAtivarSocket";
-            this.toolStripMenuItemAtivarSocket.Size = new System.Drawing.Size(188, 22);
-            this.toolStripMenuItemAtivarSocket.Text = "Ativar Integração";
-            this.toolStripMenuItemAtivarSocket.Click += new System.EventHandler(this.sToolStripMenuItem_Click);
-            // 
-            // toolStripTextBoxIPSocket
-            // 
-            this.toolStripTextBoxIPSocket.Name = "toolStripTextBoxIPSocket";
-            this.toolStripTextBoxIPSocket.Size = new System.Drawing.Size(100, 23);
-            this.toolStripTextBoxIPSocket.Text = "127.0.0.1";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(185, 6);
-            // 
-            // ativaDesativaDebugToolStripMenuItem
-            // 
-            this.ativaDesativaDebugToolStripMenuItem.Name = "ativaDesativaDebugToolStripMenuItem";
-            this.ativaDesativaDebugToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.ativaDesativaDebugToolStripMenuItem.Text = "Ativa/Desativa Debug";
-            this.ativaDesativaDebugToolStripMenuItem.Click += new System.EventHandler(this.ativaDesativaDebugToolStripMenuItem_Click);
-            // 
-            // desativarListenerToolStripMenuItem
-            // 
-            this.desativarListenerToolStripMenuItem.Name = "desativarListenerToolStripMenuItem";
-            this.desativarListenerToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.desativarListenerToolStripMenuItem.Text = "Desativar Listener";
-            this.desativarListenerToolStripMenuItem.Click += new System.EventHandler(this.desativarListenerToolStripMenuItem_Click);
-            // 
-            // limparTudoToolStripMenuItem
-            // 
-            this.limparTudoToolStripMenuItem.Name = "limparTudoToolStripMenuItem";
-            this.limparTudoToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.limparTudoToolStripMenuItem.Text = "Limpar Tudo";
-            this.limparTudoToolStripMenuItem.Click += new System.EventHandler(this.limparTudoToolStripMenuItem_Click);
-            // 
-            // visãoToolStripMenuItem
-            // 
-            this.visãoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.imagemToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.avisosToolStripMenuItem,
-            this.toolStripSeparator3,
-            this.navegadorToolStripMenuItem});
-            this.visãoToolStripMenuItem.Name = "visãoToolStripMenuItem";
-            this.visãoToolStripMenuItem.Size = new System.Drawing.Size(47, 23);
-            this.visãoToolStripMenuItem.Text = "Visão";
-            // 
-            // imagemToolStripMenuItem
-            // 
-            this.imagemToolStripMenuItem.CheckOnClick = true;
-            this.imagemToolStripMenuItem.Name = "imagemToolStripMenuItem";
-            this.imagemToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.imagemToolStripMenuItem.Text = "Exportar Slides";
-            this.imagemToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.visaoToolStripMenuItem_CheckStateChanged);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(165, 6);
-            // 
-            // avisosToolStripMenuItem
-            // 
-            this.avisosToolStripMenuItem.CheckOnClick = true;
-            this.avisosToolStripMenuItem.Name = "avisosToolStripMenuItem";
-            this.avisosToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.avisosToolStripMenuItem.Text = "Avisos";
-            this.avisosToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.visaoToolStripMenuItem_CheckStateChanged);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(165, 6);
-            // 
-            // navegadorToolStripMenuItem
-            // 
-            this.navegadorToolStripMenuItem.CheckOnClick = true;
-            this.navegadorToolStripMenuItem.Name = "navegadorToolStripMenuItem";
-            this.navegadorToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.navegadorToolStripMenuItem.Text = "Navegador (vMix)";
-            this.navegadorToolStripMenuItem.CheckStateChanged += new System.EventHandler(this.visaoToolStripMenuItem_CheckStateChanged);
-            // 
-            // ajudaToolStripMenuItem
-            // 
-            this.ajudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sobreOProgramaToolStripMenuItem});
-            this.ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
-            this.ajudaToolStripMenuItem.Size = new System.Drawing.Size(50, 23);
-            this.ajudaToolStripMenuItem.Text = "Ajuda";
-            // 
-            // sobreOProgramaToolStripMenuItem
-            // 
-            this.sobreOProgramaToolStripMenuItem.Name = "sobreOProgramaToolStripMenuItem";
-            this.sobreOProgramaToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.sobreOProgramaToolStripMenuItem.Text = "Sobre o Programa";
-            this.sobreOProgramaToolStripMenuItem.Click += new System.EventHandler(this.sobreOProgramaToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Enabled = false;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(72, 23);
-            this.toolStripMenuItem1.Text = "Template:";
-            // 
-            // toolStripComboBoxTemplate
-            // 
-            this.toolStripComboBoxTemplate.Name = "toolStripComboBoxTemplate";
-            this.toolStripComboBoxTemplate.Size = new System.Drawing.Size(180, 23);
-            // 
-            // toolTipBiblia
-            // 
-            this.toolTipBiblia.AutoPopDelay = 5000;
-            this.toolTipBiblia.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.toolTipBiblia.ForeColor = System.Drawing.Color.Black;
-            this.toolTipBiblia.InitialDelay = 100;
-            this.toolTipBiblia.IsBalloon = true;
-            this.toolTipBiblia.ReshowDelay = 100;
-            this.toolTipBiblia.UseAnimation = false;
-            this.toolTipBiblia.UseFading = false;
-            // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.WorkerSupportsCancellation = true;
+            // toolTip1
+            // 
+            this.toolTip1.AutoPopDelay = 5000;
+            this.toolTip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.toolTip1.ForeColor = System.Drawing.Color.Black;
+            this.toolTip1.InitialDelay = 500;
+            this.toolTip1.ReshowDelay = 100;
+            // 
+            // splitContainerMain
+            // 
+            this.splitContainerMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerMain.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerMain.Name = "splitContainerMain";
+            // 
+            // splitContainerMain.Panel1
+            // 
+            this.splitContainerMain.Panel1.Controls.Add(this.tableLayoutPanelEsquerda);
+            this.splitContainerMain.Panel1MinSize = 515;
+            // 
+            // splitContainerMain.Panel2
+            // 
+            this.splitContainerMain.Panel2.Controls.Add(this.tableLayoutPanelLadoDireito);
+            this.splitContainerMain.Panel2MinSize = 300;
+            this.splitContainerMain.Size = new System.Drawing.Size(827, 550);
+            this.splitContainerMain.SplitterDistance = 515;
+            this.splitContainerMain.TabIndex = 1;
+            // 
+            // tableLayoutPanelEsquerda
+            // 
+            this.tableLayoutPanelEsquerda.ColumnCount = 2;
+            this.tableLayoutPanelEsquerda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 256F));
+            this.tableLayoutPanelEsquerda.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelEsquerda.Controls.Add(this.groupBoxBiblia, 0, 3);
+            this.tableLayoutPanelEsquerda.Controls.Add(this.groupBoxSelecionadas, 1, 1);
+            this.tableLayoutPanelEsquerda.Controls.Add(this.groupBoxHinos, 0, 0);
+            this.tableLayoutPanelEsquerda.Controls.Add(this.groupBoxAvisos, 0, 1);
+            this.tableLayoutPanelEsquerda.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelEsquerda.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelEsquerda.Name = "tableLayoutPanelEsquerda";
+            this.tableLayoutPanelEsquerda.RowCount = 4;
+            this.tableLayoutPanelEsquerda.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelEsquerda.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 63F));
+            this.tableLayoutPanelEsquerda.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 119F));
+            this.tableLayoutPanelEsquerda.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 118F));
+            this.tableLayoutPanelEsquerda.Size = new System.Drawing.Size(515, 550);
+            this.tableLayoutPanelEsquerda.TabIndex = 0;
+            // 
+            // tableLayoutPanelLadoDireito
+            // 
+            this.tableLayoutPanelLadoDireito.ColumnCount = 1;
+            this.tableLayoutPanelLadoDireito.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelLadoDireito.Controls.Add(this.groupBoxFerramentas, 0, 1);
+            this.tableLayoutPanelLadoDireito.Controls.Add(this.groupBoxAtiva, 0, 0);
+            this.tableLayoutPanelLadoDireito.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelLadoDireito.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelLadoDireito.Name = "tableLayoutPanelLadoDireito";
+            this.tableLayoutPanelLadoDireito.RowCount = 2;
+            this.tableLayoutPanelLadoDireito.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelLadoDireito.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 298F));
+            this.tableLayoutPanelLadoDireito.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanelLadoDireito.Size = new System.Drawing.Size(308, 550);
+            this.tableLayoutPanelLadoDireito.TabIndex = 0;
             // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(842, 640);
-            this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.tableLayoutPanelPrincipal);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(858, 678);
+            this.ClientSize = new System.Drawing.Size(827, 550);
+            this.Controls.Add(this.splitContainerMain);
+            this.MinimumSize = new System.Drawing.Size(843, 588);
             this.Name = "FormPrincipal";
-            this.Text = "Sistema de Projeção";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormPrincipal_FormClosed);
+            this.Text = "Apresentação";
             this.Load += new System.EventHandler(this.FormPrincipal_Load);
             this.groupBoxHinos.ResumeLayout(false);
             this.tableLayoutPanelHinos.ResumeLayout(false);
-            this.tableLayoutPanelHinos.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.filtroDataGridView)).EndInit();
             this.groupBoxSelecionadas.ResumeLayout(false);
             this.tableLayoutPanelSelecionadas.ResumeLayout(false);
             this.groupBoxAvisos.ResumeLayout(false);
             this.groupBoxAvisos.PerformLayout();
+            this.groupBoxFerramentas.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.groupBoxAtiva.ResumeLayout(false);
             this.tableLayoutPanelAtivo.ResumeLayout(false);
             this.tableLayoutPanelAtivo.PerformLayout();
-            this.tableLayoutNavegacaoLinha.ResumeLayout(false);
-            this.tableLayoutPanelPrincipal.ResumeLayout(false);
-            this.groupBoxSlides.ResumeLayout(false);
-            this.groupBoxSlides.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSlide)).EndInit();
-            this.groupBoxVMix.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.groupBoxBiblia.ResumeLayout(false);
             this.groupBoxBiblia.PerformLayout();
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.splitContainerMain.Panel1.ResumeLayout(false);
+            this.splitContainerMain.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
+            this.splitContainerMain.ResumeLayout(false);
+            this.tableLayoutPanelEsquerda.ResumeLayout(false);
+            this.tableLayoutPanelLadoDireito.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1176,34 +963,39 @@
 
         private System.Windows.Forms.Button buttonMostrarApresentacao;
         private System.Windows.Forms.GroupBox groupBoxHinos;
-        private System.Windows.Forms.ListBox listBoxDisponivel;
-        private System.Windows.Forms.TextBox textBoxBuscar;
-        private System.Windows.Forms.Label labelTitulo;
         private System.Windows.Forms.GroupBox groupBoxSelecionadas;
         private System.Windows.Forms.ListBox listBoxSelecionado;
+        private System.Windows.Forms.Button buttonIncluirPowerpoint;
         private System.Windows.Forms.GroupBox groupBoxAvisos;
         private System.Windows.Forms.Button buttonLimparAviso;
         private System.Windows.Forms.Button buttonIncluirAviso;
         private System.Windows.Forms.TextBox textBoxAvisos;
-        private System.Windows.Forms.Button buttonNovoHino;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelPrincipal;
+        private System.Windows.Forms.GroupBox groupBoxFerramentas;
         private System.Windows.Forms.GroupBox groupBoxAtiva;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelHinos;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelSelecionadas;
-        private System.Windows.Forms.Button buttonIncluirHino;
+        private System.Windows.Forms.Button filtroIncluirButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelAtivo;
         private System.Windows.Forms.TextBox textBoxAtivo;
-        private System.Windows.Forms.Button buttonSalvarHino;
+        private System.Windows.Forms.Button buttonSalvarPowerpoint;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonRemover;
         private System.Windows.Forms.Button buttonMostrarAviso;
         private System.Windows.Forms.ComboBox comboBoxAvisoTitulo;
-        private System.Windows.Forms.ToolTip toolTipLetra;
-        private System.Windows.Forms.Button buttonRenomear;
-        private System.Windows.Forms.Label labelLetra;
-        private System.Windows.Forms.TextBox textBoxBuscarLetra;
+        private System.Windows.Forms.Button buttonSobre;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBoxTamanhoFonte;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.CheckBox checkBoxCarregaHinoAuto;
+        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBoxBiblia;
         private System.Windows.Forms.Button buttonBibliaAdicionar;
         private System.Windows.Forms.Label label8;
@@ -1211,62 +1003,38 @@
         private System.Windows.Forms.TextBox textBoxBibliaCapitulo;
         private System.Windows.Forms.ComboBox comboBoxBibliaLivro;
         private System.Windows.Forms.ComboBox comboBoxBibliaTraducao;
+        private System.Windows.Forms.ComboBox comboBoxTemplate;
         private System.Windows.Forms.Button buttonBibliaMostrar;
         private System.Windows.Forms.TextBox textBoxBibliaVersiculoAdicional;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.GroupBox groupBoxVMix;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TextBox textBoxVMixURL;
-        private System.Windows.Forms.WebBrowser webBrowserVMix;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBarMostrar;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelStatus;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelServer;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem configuraçõesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemExibirEm;
-        private System.Windows.Forms.ToolStripMenuItem powerPointToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem arquivoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem salvarPorwerPointToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importarPowerPointToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ajudaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sobreOProgramaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem xAMLvMixToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAtivarSocket;
-        private System.Windows.Forms.ToolStripMenuItem apresentaçãoSelecionadaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem tooltipToolStripMenuItem;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxIPSocket;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem ativaDesativaDebugToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem desativarListenerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem limparTudoToolStripMenuItem;
-        private System.Windows.Forms.GroupBox groupBoxSlides;
-        private System.Windows.Forms.ListBox listBoxSlides;
-        private System.Windows.Forms.CheckBox checkBoxEnviarCopia;
-        private System.Windows.Forms.CheckBox checkBoxGerarImagem;
-        private System.Windows.Forms.TextBox textBoxLocalSalvarImagem;
-        private System.Windows.Forms.PictureBox pictureBoxSlide;
-        private System.Windows.Forms.Button buttonHistoricoBiblia5;
-        private System.Windows.Forms.Button buttonHistoricoBiblia4;
-        private System.Windows.Forms.Button buttonHistoricoBiblia3;
-        private System.Windows.Forms.Button buttonHistoricoBiblia2;
-        private System.Windows.Forms.Button buttonHistoricoBiblia1;
-        private System.Windows.Forms.ToolTip toolTipBiblia;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxTemplate;
-        private System.Windows.Forms.ToolStripMenuItem visãoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem avisosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem navegadorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem imagemToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.Button buttonAtualizarBaseHinos;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutNavegacaoLinha;
-        private System.Windows.Forms.Button buttonVoltarLinha;
-        private System.Windows.Forms.Button buttonAvancarLinha;
-        private System.Windows.Forms.Label labelLinhaAtiva;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label labelArtista;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label labelFiltroLetra;
+        private System.Windows.Forms.Label labelFiltroTitulo;
+        private System.Windows.Forms.Label labelFiltroArtista;
+        private System.Windows.Forms.Button buttonNovoHino;
+        private System.Windows.Forms.Button buttonSalvarHino;
+        private System.Windows.Forms.CheckBox filtroPesqHistoricoCheckBox;
+        private System.Windows.Forms.Button filtroLimparButton;
+        private System.Windows.Forms.Button filtroConsultarButton;
+        private System.Windows.Forms.TextBox filtroLetraTextBox;
+        private System.Windows.Forms.TextBox filtroTituloTextBox;
+        private System.Windows.Forms.ComboBox filtroArtistaComboBox;
+        private System.Windows.Forms.DateTimePicker filtroHistoricoDateTimePickerFim;
+        private System.Windows.Forms.DateTimePicker filtroHistoricoDateTimePickerInicio;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.DataGridView filtroDataGridView;
+        private System.Windows.Forms.TextBox textBoxTitulo;
+        private System.Windows.Forms.Label labelTitulo;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelEsquerda;
+        private System.Windows.Forms.SplitContainer splitContainerMain;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelLadoDireito;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBoxArtista;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnArtista;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNome;
     }
 }
 

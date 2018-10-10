@@ -37,12 +37,20 @@ namespace Apresentacao
 
     public class HinoItem
     {
-        public string nome;
-        public string caminho;
-        public string letra;
+        private int codigo;
+        private string artista;
+        private string nome;
+        private string letra;
 
-        public HinoItem(string n, string c)
+        private int navPosicaoTexto;
+        private string navTexto;
+
+        public HinoItem(int c)
         {
+            codigo = c;
+            navPosicaoTexto = 0;
+
+            /*
             nome = n.Substring(0, n.LastIndexOf('.')); // tira a extensão
             caminho = c;
 
@@ -52,12 +60,110 @@ namespace Apresentacao
             {
                 letra += linha + "\r\n";
             }
-            intro.Close();
+             */
+        }
+
+        private static SQLiteConnection conectaHino()
+        {
+            SQLiteConnection sqlite_conn;
+
+            sqlite_conn = new SQLiteConnection(); // Create an instance of the object
+            sqlite_conn.ConnectionString = "Data Source=Hinos\\hinos.db;Version=3;New=False;Compress=False;UTF8Encoding=True"; // Set the ConnectionString
+            try
+            {
+                sqlite_conn.Open(); // Open the connection. Now you can fire SQL-Queries
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine(e.Message);
+            }
+
+            return sqlite_conn;
+        }
+
+        public void AtualizarHino(string titulo, string letra)
+        {
+
+        }
+
+        public string ReadLine()
+        {
+            int pos = navTexto.IndexOf("\n");
+
+            string linha = navTexto.Substring(0, pos - 1).Trim();
+
+            navTexto = navTexto.Substring(pos + 1);
+
+            return linha;
+        }
+
+        public string Artista
+        {
+            get
+            {
+                return artista;
+            }
+        }
+
+        public string Titulo
+        {
+            get
+            {
+                return nome;
+            }
+        }
+
+        public string Letra
+        {
+            get
+            {
+                return letra;
+            }
         }
 
         public override String ToString()
         {
-            return nome;
+            return nome + " (" + artista + ")";
+        }
+
+        public static DataTable RetornaListaArtistas()
+        {
+            DataTable dados = new DataTable("Artista");
+            dados.Columns.Add("codigo", typeof(long));
+            dados.Columns.Add("artista", typeof(string));
+
+            SQLiteConnection sqlite_conn = conectaHino();
+            SQLiteCommand sqlite_cmd;
+            SQLiteDataReader sqlite_datareader;
+
+            sqlite_cmd = sqlite_conn.CreateCommand();
+            sqlite_cmd.CommandText = "select cod_artista, artista from artista order by artista;";
+            sqlite_datareader = sqlite_cmd.ExecuteReader();
+
+            while (sqlite_datareader.Read())
+                dados.Rows.Add(new object[] { (long)sqlite_datareader["cod_artista"], (string)sqlite_datareader["artista"] });
+
+            return dados;
+        }
+
+        public static DataTable RetornaListaHinos()
+        {
+            DataTable dados = new DataTable("Artista");
+            dados.Columns.Add("codigo", typeof(long));
+            dados.Columns.Add("artista", typeof(string));
+
+            SQLiteConnection sqlite_conn = conectaHino();
+            SQLiteCommand sqlite_cmd;
+            SQLiteDataReader sqlite_datareader;
+
+            sqlite_cmd = sqlite_conn.CreateCommand();
+            sqlite_cmd.CommandText = "select cod_artista, artista from artista order by artista;";
+            sqlite_datareader = sqlite_cmd.ExecuteReader();
+
+            while (sqlite_datareader.Read())
+                dados.Rows.Add(new object[] { (long)sqlite_datareader["cod_artista"], (string)sqlite_datareader["artista"] });
+
+            return dados;
         }
     }
 
@@ -110,29 +216,21 @@ namespace Apresentacao
         private int capitulo;
         private int versiculo;
         private string texto;
-        private int incluir;
 
         private int navegarVersiculo;
         private int navegarCapitulo;
 
-        public BibliaItem(string t, string l, int c, int v, int i = 0)
+        public BibliaItem(string t, string l, int c, int v)
         {
             codTraducao = t;
             codLivro = l;
             capitulo = c;
             versiculo = v;
-            incluir = i;
 
             navegarVersiculo = versiculo;
             navegarCapitulo = capitulo;
 
             preparaDados();
-        }
-
-        public void ReiniciarNavegacao()
-        {
-            navegarVersiculo = versiculo;
-            navegarCapitulo = capitulo;
         }
 
         private static SQLiteConnection conectaBiblia()
@@ -294,40 +392,17 @@ namespace Apresentacao
             }
         }
 
-        public int Incluir
-        {
-            get
-            {
-                return this.incluir;
-            }
-        }
-
         public string Referencia
         {
             get
             {
-                string referencia = livro + " " + capitulo + ":" + versiculo;
-
-                return referencia;
-            }
-        }
-
-        public string ReferenciaCompleta
-        {
-            get
-            {
-                string referencia = this.Referencia;
-
-                if (incluir > 0)
-                    referencia += " (+" + incluir + ")";
-
-                return referencia;
+                return livro + " " + capitulo + ":" + versiculo;
             }
         }
 
         public override String ToString()
         {
-            return "Versiculo -> " + this.Referencia;
+            return "Versiculo -> " + livro + " " + capitulo + ":" + versiculo;
         }
     }
 
