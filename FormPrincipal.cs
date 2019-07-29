@@ -378,14 +378,19 @@ namespace Apresentacao
 
         private void buttonSalvarHino_Click(object sender, EventArgs e)
         {
+            log.Debug("buttonSalvarHino_Click");
+
             switch (tipoItemSelecionado)
             {
                 case TipoItem.Hino:
+                    log.Debug("TipoItem.Hino");
 
                     // Recuepra hino selecionado
                     HinoItem hino = ((Item)listBoxSelecionado.SelectedItem).GetItemHino();
                     int idx = listBoxDisponivel.Items.IndexOf(hino);
-                    
+
+                    log.Debug("Hino [" + idx + ":" + hino + "]");
+
                     // Salva alterações no disco
                     System.IO.StreamWriter escritaHino = new System.IO.StreamWriter(hino.caminho, false, Encoding.UTF8);
                     escritaHino.Write(textBoxAtivo.Text);
@@ -403,12 +408,15 @@ namespace Apresentacao
                     break;
 
                 case TipoItem.NovoHino:
+                    log.Debug("TipoItem.NovoHino");
 
                     saveFileDialog1.InitialDirectory = strCurrDir + "\\Hinos";
                     saveFileDialog1.DefaultExt = "*.txt";
                     saveFileDialog1.Filter = "Arquivo Texto|*.txt";
                     if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                     {
+                        log.Debug("Hino [" + saveFileDialog1.FileName + "]");
+
                         System.IO.StreamWriter escritaNovoHino = new System.IO.StreamWriter(saveFileDialog1.FileName, false, Encoding.UTF8);
                         escritaNovoHino.Write(textBoxAtivo.Text);
                         escritaNovoHino.Close();
@@ -419,14 +427,17 @@ namespace Apresentacao
                     break;
 
                 case TipoItem.Aviso:
+                    log.Debug("TipoItem.Aviso");
                     ((Item)listBoxSelecionado.SelectedItem).GetItemAviso().texto = textBoxAtivo.Text;
                     break;
 
                 case TipoItem.Nenhum:
+                    log.Debug("TipoItem.Nenhum");
                     MessageBox.Show("Não há item selecionado", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     break;
 
                 default:
+                    log.Debug("default");
                     MessageBox.Show("Não é possível salvar este tipo de item", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     break;
             }
