@@ -85,36 +85,6 @@ namespace Apresentacao
             textBoxBuscar.Focus();
         }
 
-        private string EncodeTo64(string toEncode)
-        {
-
-            byte[] toEncodeAsBytes
-
-                  = System.Text.Encoding.Unicode.GetBytes(toEncode);
-
-            string returnValue
-
-                  = System.Convert.ToBase64String(toEncodeAsBytes);
-
-            return returnValue;
-
-        }
-
-        private string DecodeFrom64(string encodedData)
-        {
-
-            byte[] encodedDataAsBytes
-
-                = System.Convert.FromBase64String(encodedData);
-
-            string returnValue =
-
-               System.Text.Encoding.Unicode.GetString(encodedDataAsBytes);
-
-            return returnValue;
-
-        }
-
         public static Image CreateNonIndexedImage(string path)
         {
             using (var sourceImage = Image.FromFile(path))
@@ -185,6 +155,15 @@ namespace Apresentacao
             sToolStripMenuItem_Click(null, null);
 
             setObjectText(toolStripStatusLabelStatus, "toolStrip", "Sistema pronto para uso.");
+        }
+
+        private void FormPrincipal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            for (int i = 0; i < listBoxSlides.Items.Count; i++)
+            {
+                if (i == 0) pictureBoxSlide.Image = Apresentacao.Properties.Resources.FundoSlide;
+                System.IO.File.Delete("slide" + (i + 1).ToString().PadLeft(3, '0') + ".png");
+            }
         }
 
         #region EVENTOS
@@ -464,6 +443,414 @@ namespace Apresentacao
         {
             if (myTimerAtualizaLista.Enabled) myTimerAtualizaLista.Stop();
             myTimerAtualizaLista.Start();
+        }
+
+        private void buttonRenomear_Click(object sender, EventArgs e)
+        {
+            switch (tipoItemSelecionado)
+            {
+                case TipoItem.Hino:
+                    HinoItem alterarHino = ((Item)listBoxSelecionado.SelectedItem).GetItemHino();
+                    Renomear renomarHino = new Renomear(alterarHino.caminho);
+                    if (renomarHino.ShowDialog() == DialogResult.OK)
+                    {
+                        int idx = listBoxDisponivel.Items.IndexOf(alterarHino);
+
+                        // Salva alterações no disco
+                        alterarHino.nome = renomarHino.NovoNome;
+                        alterarHino.caminho = renomarHino.NovoCaminho;
+                        listBoxSelecionado.Items[listBoxSelecionado.SelectedIndex] = new Item(TipoItem.Hino, alterarHino);
+
+                        // Salva alterações do hino na lista completa
+                        listBoxDisponivel.Items[idx] = alterarHino;
+                    }
+                    break;
+
+                case TipoItem.NovoHino:
+                    MessageBox.Show("Salve o hino antes de renomeá-lo", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    break;
+
+                case TipoItem.Aviso:
+                    MessageBox.Show("Não tem como renomaer um aviso ainda", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    /*
+                    AvisoItem alterarAviso = ((Item)listBoxSelecionado.SelectedItem).GetItemAviso();
+                    Renomear renomarAviso = new Renomear(alterarAviso.caminho);
+                    if (renomarAviso.ShowDialog() == DialogResult.OK)
+                    {
+                        alterarAviso.nome = renomarAviso.NovoNome;
+                        alterarAviso.caminho = renomarAviso.NovoCaminho;
+                        listBoxSelecionado.Items[listBoxSelecionado.SelectedIndex] = new Item(TipoItem.Aviso, alterarAviso);
+                    }
+                    */
+                    break;
+
+                case TipoItem.Nenhum:
+                    MessageBox.Show("Não há item selecionado", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    break;
+
+                default:
+                    MessageBox.Show("Não é possível renomear este tipo de item", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    break;
+            }
+        }
+
+        private void textBoxBuscar_Enter(object sender, EventArgs e)
+        {
+            textBoxBuscar.SelectAll();
+        }
+
+        private void textBoxAtivo_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (textBoxAtivo.Text.Length > 0)
+            {
+                SelecionarLinhaAndEnviar();
+            }
+        }
+
+        private void textBoxAtivo_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (textBoxAtivo.Text.Length > 0)
+            {
+                SelecionarLinhaAndEnviar();
+            }
+        }
+
+        private void textBoxSelectAll_Enter(object sender, EventArgs e)
+        {
+            ((TextBox)sender).SelectAll();
+        }
+
+        private void listBoxSlides_MouseClick(object sender, MouseEventArgs e)
+        {
+            ativarImagemSlide();
+        }
+
+        private void listBoxSlides_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ativarImagemSlide();
+        }
+
+        private void checkBoxGerarImagem_CheckedChanged(object sender, EventArgs e)
+        {
+            checkBoxEnviarCopia.Enabled = checkBoxGerarImagem.Checked;
+
+            checkBoxEnviarCopia_CheckedChanged(null, null);
+        }
+
+        private void checkBoxEnviarCopia_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxLocalSalvarImagem.Enabled = (checkBoxEnviarCopia.Enabled && checkBoxEnviarCopia.Checked);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            webBrowserVMix.Url = new Uri(textBoxVMixURL.Text);
+        }
+
+        private void powerPointToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConfigPowerPoint config = new ConfigPowerPoint();
+            config.ShowDialog();
+        }
+
+        private void salvarPorwerPointToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listBoxSelecionado.Items.Count == 0)
+            {
+                MessageBox.Show("Selecione pelo menos um hino.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                saveFileDialog1.DefaultExt = ".pptx";
+                saveFileDialog1.Filter = "Apresentação do Powerpoint 97-2003|*.ppt|Apresentação do Powerpoint 2007|*.pptx";
+                saveFileDialog1.FilterIndex = 2;
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    ShowPresentation(true);
+                    GC.Collect();
+                }
+            }
+        }
+
+        private void importarPowerPointToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                System.IO.FileInfo arquivo = new System.IO.FileInfo(openFileDialog1.FileName);
+                String nome = arquivo.Name;
+                String caminho = arquivo.FullName;
+                listBoxSelecionado.Items.Add(new Item(TipoItem.Arquivo, new ArquivoItem(nome, nome)));
+            }
+        }
+
+        private void sobreOProgramaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SobrePrograma s = new SobrePrograma();
+            s.ShowDialog();
+        }
+
+        private void sToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (toolStripMenuItemAtivarSocket.Checked)
+            {
+                toolStripStatusLabelServer.Text = "Integração com vMix ATIVADO";
+                toolStripTextBoxIPSocket.Enabled = true;
+                buttonAvancarLinha.Enabled = true;
+                buttonVoltarLinha.Enabled = true;
+                SelecionarLinhaAndEnviar(false);
+
+                tableLayoutPanelAtivo.SetRowSpan(textBoxAtivo, 1);
+                tableLayoutNavegacaoLinha.Visible = true;
+
+                if (!navegadorToolStripMenuItem.Checked)
+                {
+                    navegadorToolStripMenuItem.Checked = true;
+                    visaoToolStripMenuItem_CheckStateChanged(null, null);
+                }
+            }
+            else
+            {
+                toolStripStatusLabelServer.Text = "Integração com vMix DESATIVADO";
+                toolStripTextBoxIPSocket.Enabled = false;
+                buttonAvancarLinha.Enabled = false;
+                buttonVoltarLinha.Enabled = false;
+                labelLinhaAtiva.Text = "";
+
+                tableLayoutPanelAtivo.SetRowSpan(textBoxAtivo, 2);
+                tableLayoutNavegacaoLinha.Visible = false;
+
+                if (navegadorToolStripMenuItem.Checked)
+                {
+                    navegadorToolStripMenuItem.Checked = false;
+                    visaoToolStripMenuItem_CheckStateChanged(null, null);
+                }
+            }
+        }
+
+        private void ativaDesativaDebugToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SendServerMessage(TOOGLEDEBUG);
+        }
+
+        private void desativarListenerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SendServerMessage(PODEENCERRAR);
+        }
+
+        private void limparTudoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SendServerMessage(LIMPARTUDO);
+        }
+
+        private void textBoxBibliaEnterKey_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                buttonBibliaAdicionar_Click(null, null);
+            }
+            if (e.Control && (e.KeyCode == Keys.D1 || e.KeyCode == Keys.D2 || e.KeyCode == Keys.D3 || e.KeyCode == Keys.D4 || e.KeyCode == Keys.D5))
+            {
+                SalvarVersiculoHistorico(e.KeyValue - 49);
+            }
+        }
+
+        private void buttonHistoricoBiblia_MouseDown(object sender, MouseEventArgs e)
+        {
+            string nome = ((Button)sender).Name;
+            int historicoIndex = Convert.ToInt32(nome.Substring(nome.Length - 1, 1)) - 1;
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                ((Button)sender).BackColor = Color.FromArgb(224, 224, 224);
+                historicoBiblia[historicoIndex] = null;
+            }
+            else if (historicoBiblia[historicoIndex] != null)
+            {
+                BibliaItem item = historicoBiblia[historicoIndex];
+                listBoxSelecionado.Items.Add(new Item(TipoItem.Biblia, item));
+
+                bibliaIncluirAdicional(item);
+            }
+        }
+
+        private void buttonHistoricoBiblia_MouseHover(object sender, EventArgs e)
+        {
+            BibliaItem item;
+            string nome = ((Button)sender).Name;
+            int historicoIndex = Convert.ToInt32(nome.Substring(nome.Length - 1, 1)) - 1;
+
+            if (historicoBiblia != null && (item = historicoBiblia[historicoIndex]) != null)
+            {
+                toolTipBiblia.SetToolTip((Button)sender, item.ReferenciaCompleta);
+                toolTipBiblia.Active = true;
+            }
+            else
+            {
+                toolTipBiblia.Active = false;
+            }
+        }
+
+        private void buttonMostrarAviso_Click(object sender, EventArgs e)
+        {
+            if (comboBoxAvisoTitulo.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Digite um título para o aviso antes de mostrá-lo.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                backgroundWorker1.DoWork += DoWork_MostrarAviso;
+                backgroundWorker1.RunWorkerAsync(new string[] { comboBoxAvisoTitulo.Text.Trim(), textBoxAvisos.Text });
+            }
+        }
+
+        private void buttonBibliaMostrar_Click(object sender, EventArgs e)
+        {
+            if (validaCamposBiblia())
+            {
+                string traducao = ((Item)comboBoxBibliaTraducao.SelectedItem).GetItemChaveValor().chave;
+                string livro = ((Item)comboBoxBibliaLivro.SelectedItem).GetItemChaveValor().chave;
+                int capitulo = Convert.ToInt32(textBoxBibliaCapitulo.Text);
+                int versiculo = Convert.ToInt32(textBoxBibliaVersiculo.Text);
+
+                int adicional = 0;
+                if (textBoxBibliaVersiculoAdicional.Text != "")
+                {
+                    adicional = Convert.ToInt32(textBoxBibliaVersiculoAdicional.Text);
+                }
+
+                backgroundWorker1.DoWork += DoWork_MostrarBiblia;
+                backgroundWorker1.RunWorkerAsync(new object[] { traducao, livro, capitulo, versiculo, adicional });
+            }
+        }
+
+        private void buttonMostrarApresentacao_Click(object sender, EventArgs e)
+        {
+            backgroundWorker1.DoWork += DoWork_MostrarSelecionados;
+            backgroundWorker1.RunWorkerAsync();
+        }
+
+        private void visaoToolStripMenuItem_CheckStateChanged(object sender, EventArgs e)
+        {
+            int rowspan;
+
+            // esquera
+            rowspan = (imagemToolStripMenuItem.Checked ? 2 : 4);
+            tableLayoutPanelPrincipal.SetRowSpan(groupBoxHinos, rowspan);
+            groupBoxSlides.Visible = imagemToolStripMenuItem.Checked;
+
+            // centro
+            groupBoxAvisos.Visible = avisosToolStripMenuItem.Checked;
+            if (avisosToolStripMenuItem.Checked)
+            {
+                tableLayoutPanelPrincipal.Controls.Remove(groupBoxSelecionadas);
+                tableLayoutPanelPrincipal.Controls.Add(groupBoxSelecionadas, 1, 3);
+                tableLayoutPanelPrincipal.SetRowSpan(groupBoxSelecionadas, 2);
+            }
+            else
+            {
+                tableLayoutPanelPrincipal.Controls.Remove(groupBoxSelecionadas);
+                tableLayoutPanelPrincipal.Controls.Add(groupBoxSelecionadas, 1, 2);
+                tableLayoutPanelPrincipal.SetRowSpan(groupBoxSelecionadas, 3);
+            }
+
+            // direita
+            rowspan = (navegadorToolStripMenuItem.Checked ? 2 : 4);
+            tableLayoutPanelPrincipal.SetRowSpan(groupBoxAtiva, rowspan);
+            groupBoxVMix.Visible = navegadorToolStripMenuItem.Checked;
+        }
+
+        private void buttonAtualizarBaseHinos_Click(object sender, EventArgs e)
+        {
+            Thread atualizar = new Thread(() => AtualizaBaseHinos());
+            atualizar.IsBackground = true;
+            atualizar.Start();
+        }
+
+        private void buttonVoltarLinha_Click(object sender, EventArgs e)
+        {
+            int linhaAtiva = textBoxAtivo.GetLineFromCharIndex(textBoxAtivo.SelectionStart);
+
+            if (linhaAtiva >= 0)
+            {
+                if (linhaAtiva > 0) linhaAtiva--;
+
+                selecionarLinhaAndAtualizaLabel(linhaAtiva);
+
+                SelecionarLinhaAndEnviar(false);
+            }
+
+        }
+
+        private void buttonAvancarLinha_Click(object sender, EventArgs e)
+        {
+            int linhaAtiva = textBoxAtivo.GetLineFromCharIndex(textBoxAtivo.SelectionStart);
+
+            if (linhaAtiva <= textBoxAtivo.Lines.Length)
+            {
+                if (linhaAtiva < textBoxAtivo.Lines.Length) linhaAtiva++;
+
+                selecionarLinhaAndAtualizaLabel(linhaAtiva);
+
+                SelecionarLinhaAndEnviar(false);
+            }
+
+        }
+
+        private void incluirItem_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Copy;
+            else
+                e.Effect = DragDropEffects.None;
+
+        }
+
+        private void incluirItem_DragDrop(object sender, DragEventArgs e)
+        {
+            string[] infoArquivo = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+            for (int i = 0; i < infoArquivo.Length; i++)
+            {
+                System.IO.FileInfo info = new System.IO.FileInfo(infoArquivo[i]);
+
+                if (info.Extension != ".txt")
+                {
+                    MessageBox.Show("Só é aceito arquivo do tipo TXT.\nArquivo " + info.Name + " não copiado.", "Atenção");
+                    continue;
+                }
+
+                System.IO.DirectoryInfo hinosFolder = new System.IO.DirectoryInfo(strCurrDir + "\\Hinos");
+                System.IO.FileInfo[] infoExiste = hinosFolder.GetFiles(info.Name);
+
+                if (infoExiste.Length > 0)
+                {
+                    MessageBox.Show("Já existe um arquivo com esse nome\nArquivo " + info.Name + " não copiado.", "Atenção");
+                    continue;
+                }
+
+                string destName = hinosFolder.FullName + "\\" + info.Name;
+                System.IO.File.Copy(info.FullName, destName);
+
+                // Analisa codificação do arquivo
+                // Se não for UTF8 então faz a conversão
+                Encoding originalEnconding = GetEncoding(info.FullName);
+                if (originalEnconding.HeaderName != "utf-8")
+                {
+                    byte[] ansiBytes = System.IO.File.ReadAllBytes(destName);
+                    var utf8String = Encoding.Default.GetString(ansiBytes);
+                    System.IO.File.WriteAllText(destName, utf8String);
+                }
+
+                // cria novo hino nas estruturas
+                HinoItem newHino = new HinoItem(info.Name, destName);
+                listBoxDisponivel.Items.Add(newHino);
+                baseHinos.Add(newHino);
+
+                // inclusive nos itens selecionados
+                if (((ListBox)sender).Name == "listBoxSelecionado")
+                    listBoxSelecionado.Items.Add(new Item(TipoItem.Hino, newHino));
+
+            }
+
         }
 
         #endregion
@@ -1047,115 +1434,6 @@ namespace Apresentacao
             }
         }
 
-        #endregion
-
-        private void buttonRenomear_Click(object sender, EventArgs e)
-        {
-            switch (tipoItemSelecionado)
-            {
-                case TipoItem.Hino:
-                    HinoItem alterarHino = ((Item)listBoxSelecionado.SelectedItem).GetItemHino();
-                    Renomear renomarHino = new Renomear(alterarHino.caminho);
-                    if (renomarHino.ShowDialog() == DialogResult.OK)
-                    {
-                        int idx = listBoxDisponivel.Items.IndexOf(alterarHino);
-
-                        // Salva alterações no disco
-                        alterarHino.nome = renomarHino.NovoNome;
-                        alterarHino.caminho = renomarHino.NovoCaminho;
-                        listBoxSelecionado.Items[listBoxSelecionado.SelectedIndex] = new Item(TipoItem.Hino, alterarHino);
-
-                        // Salva alterações do hino na lista completa
-                        listBoxDisponivel.Items[idx] = alterarHino;
-                    }
-                    break;
-
-                case TipoItem.NovoHino:
-                    MessageBox.Show("Salve o hino antes de renomeá-lo", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    break;
-
-                case TipoItem.Aviso:
-                    MessageBox.Show("Não tem como renomaer um aviso ainda", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    /*
-                    AvisoItem alterarAviso = ((Item)listBoxSelecionado.SelectedItem).GetItemAviso();
-                    Renomear renomarAviso = new Renomear(alterarAviso.caminho);
-                    if (renomarAviso.ShowDialog() == DialogResult.OK)
-                    {
-                        alterarAviso.nome = renomarAviso.NovoNome;
-                        alterarAviso.caminho = renomarAviso.NovoCaminho;
-                        listBoxSelecionado.Items[listBoxSelecionado.SelectedIndex] = new Item(TipoItem.Aviso, alterarAviso);
-                    }
-                    */
-                    break;
-
-                case TipoItem.Nenhum:
-                    MessageBox.Show("Não há item selecionado", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    break;
-
-                default:
-                    MessageBox.Show("Não é possível renomear este tipo de item", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    break;
-            }
-        }
-
-        private void textBoxBuscar_Enter(object sender, EventArgs e)
-        {
-            textBoxBuscar.SelectAll();
-        }
-
-        private void SendServerMessage(String message)
-        {
-            if (!toolStripMenuItemAtivarSocket.Checked) return;
-
-            String server = toolStripTextBoxIPSocket.Text;
-
-            try
-            {
-                // Create a TcpClient. 
-                // Note, for this client to work you need to have a TcpServer  
-                // connected to the same address as specified by the server, port 
-                // combination.
-                Int32 port = 13000;
-                TcpClient client = new TcpClient(server, port);
-                
-                // Translate the passed message into ASCII and store it as a Byte array.
-                Byte[] data = System.Text.Encoding.UTF8.GetBytes(message);
-
-                // Get a client stream for reading and writing. 
-                //  Stream stream = client.GetStream();
-
-                NetworkStream stream = client.GetStream();
-
-                // Send the message to the connected TcpServer. 
-                stream.Write(data, 0, data.Length);
-
-                // Receive the TcpServer.response. 
-
-                // Buffer to store the response bytes.
-                //data = new Byte[256];
-
-                // String to store the response ASCII representation.
-                //String responseData = String.Empty;
-
-                // Read the first batch of the TcpServer response bytes.
-                //Int32 bytes = stream.Read(data, 0, data.Length);
-                //responseData = System.Text.Encoding.UTF8.GetString(data, 0, bytes);
-
-                // Close everything.
-                stream.Close();
-                client.Close();
-            }
-            catch (ArgumentNullException e)
-            {
-                toolStripStatusLabelServer.Text = "ArgumentNullException: " + e.Message.Replace("\n","");
-            }
-            catch (SocketException e)
-            {
-                toolStripStatusLabelServer.Text = "SocketException: " + e.Message.Replace("\n", "");
-            }
-
-        }
-
         private void SelecionarLinhaAndEnviar(bool selecionarLinha = false)
         {
             try
@@ -1176,194 +1454,6 @@ namespace Apresentacao
             catch (Exception e)
             {
                 SendServerMessage(" ");
-            }
-        }
-
-        private void textBoxAtivo_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (textBoxAtivo.Text.Length > 0)
-            {
-                SelecionarLinhaAndEnviar();
-            }
-        }
-
-        private void textBoxAtivo_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (textBoxAtivo.Text.Length > 0)
-            {
-                SelecionarLinhaAndEnviar();
-            }
-        }
-        
-        private void textBoxSelectAll_Enter(object sender, EventArgs e)
-        {
-            ((TextBox)sender).SelectAll();
-        }
-
-        private void listBoxSlides_MouseClick(object sender, MouseEventArgs e)
-        {
-            ativarImagemSlide();
-        }
-
-        private void listBoxSlides_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ativarImagemSlide();
-        }
-
-        private void ativarImagemSlide()
-        {
-            if (listBoxSlides.SelectedIndex >= 0)
-            {
-                int index = listBoxSlides.SelectedIndex + 1;
-                pictureBoxSlide.Image = CreateNonIndexedImage("slide" + index.ToString().PadLeft(3, '0') + ".png");
-
-                if (checkBoxEnviarCopia.Checked)
-                {
-                    if (!System.IO.File.Exists(textBoxLocalSalvarImagem.Text))
-                    {
-                        System.IO.FileInfo info = new System.IO.FileInfo(textBoxLocalSalvarImagem.Text);
-
-                        if (!System.IO.Directory.Exists(info.DirectoryName))
-                        {
-                            System.IO.Directory.CreateDirectory(info.DirectoryName);
-                        }
-                    }
-
-                    System.IO.File.Copy("slide" + index.ToString().PadLeft(3, '0') + ".png", textBoxLocalSalvarImagem.Text, true);
-                }
-            }
-        }
-
-        private void FormPrincipal_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            for (int i = 0; i < listBoxSlides.Items.Count; i++)
-            {
-                if (i == 0) pictureBoxSlide.Image = Apresentacao.Properties.Resources.FundoSlide;
-                System.IO.File.Delete("slide" + (i + 1).ToString().PadLeft(3, '0') + ".png");
-            }
-        }
-
-        private void checkBoxGerarImagem_CheckedChanged(object sender, EventArgs e)
-        {
-            checkBoxEnviarCopia.Enabled = checkBoxGerarImagem.Checked;
-
-            checkBoxEnviarCopia_CheckedChanged(null, null);
-        }
-
-        private void checkBoxEnviarCopia_CheckedChanged(object sender, EventArgs e)
-        {
-            textBoxLocalSalvarImagem.Enabled = (checkBoxEnviarCopia.Enabled && checkBoxEnviarCopia.Checked);
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            webBrowserVMix.Url = new Uri(textBoxVMixURL.Text);
-        }
-
-        private void powerPointToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ConfigPowerPoint config = new ConfigPowerPoint();
-            config.ShowDialog();
-        }
-
-        private void salvarPorwerPointToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (listBoxSelecionado.Items.Count == 0)
-            {
-                MessageBox.Show("Selecione pelo menos um hino.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
-            {
-                saveFileDialog1.DefaultExt = ".pptx";
-                saveFileDialog1.Filter = "Apresentação do Powerpoint 97-2003|*.ppt|Apresentação do Powerpoint 2007|*.pptx";
-                saveFileDialog1.FilterIndex = 2;
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    ShowPresentation(true);
-                    GC.Collect();
-                }
-            }
-        }
-
-        private void importarPowerPointToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                System.IO.FileInfo arquivo = new System.IO.FileInfo(openFileDialog1.FileName);
-                String nome = arquivo.Name;
-                String caminho = arquivo.FullName;
-                listBoxSelecionado.Items.Add(new Item(TipoItem.Arquivo, new ArquivoItem(nome, nome)));
-            }
-        }
-
-        private void sobreOProgramaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SobrePrograma s = new SobrePrograma();
-            s.ShowDialog();
-        }
-
-        private void sToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (toolStripMenuItemAtivarSocket.Checked)
-            {
-                toolStripStatusLabelServer.Text = "Integração com vMix ATIVADO";
-                toolStripTextBoxIPSocket.Enabled = true;
-                buttonAvancarLinha.Enabled = true;
-                buttonVoltarLinha.Enabled = true;
-                SelecionarLinhaAndEnviar(false);
-
-                tableLayoutPanelAtivo.SetRowSpan(textBoxAtivo, 1);
-                tableLayoutNavegacaoLinha.Visible = true;
-
-                if (!navegadorToolStripMenuItem.Checked)
-                {
-                    navegadorToolStripMenuItem.Checked = true;
-                    visaoToolStripMenuItem_CheckStateChanged(null, null);
-                }
-            }
-            else
-            {
-                toolStripStatusLabelServer.Text = "Integração com vMix DESATIVADO";
-                toolStripTextBoxIPSocket.Enabled = false;
-                buttonAvancarLinha.Enabled = false;
-                buttonVoltarLinha.Enabled = false;
-                labelLinhaAtiva.Text = "";
-
-                tableLayoutPanelAtivo.SetRowSpan(textBoxAtivo, 2);
-                tableLayoutNavegacaoLinha.Visible = false;
-
-                if (navegadorToolStripMenuItem.Checked)
-                {
-                    navegadorToolStripMenuItem.Checked = false;
-                    visaoToolStripMenuItem_CheckStateChanged(null, null);
-                }
-            }
-        }
-
-        private void ativaDesativaDebugToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SendServerMessage(TOOGLEDEBUG);
-        }
-
-        private void desativarListenerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SendServerMessage(PODEENCERRAR);
-        }
-
-        private void limparTudoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SendServerMessage(LIMPARTUDO);
-        }
-
-        private void textBoxBibliaEnterKey_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                buttonBibliaAdicionar_Click(null, null);
-            }
-            if (e.Control && (e.KeyCode == Keys.D1 || e.KeyCode == Keys.D2 || e.KeyCode == Keys.D3 || e.KeyCode == Keys.D4 || e.KeyCode == Keys.D5))
-            {
-                SalvarVersiculoHistorico( e.KeyValue - 49 );
             }
         }
 
@@ -1406,80 +1496,6 @@ namespace Apresentacao
                         break;
                 }
             }
-        }
-
-        private void buttonHistoricoBiblia_MouseDown(object sender, MouseEventArgs e)
-        {
-            string nome = ((Button)sender).Name;
-            int historicoIndex = Convert.ToInt32(nome.Substring(nome.Length - 1, 1)) - 1;
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-            {
-                ((Button)sender).BackColor = Color.FromArgb(224, 224, 224);
-                historicoBiblia[historicoIndex] = null;
-            }
-            else if (historicoBiblia[historicoIndex] != null)
-            {
-                BibliaItem item = historicoBiblia[historicoIndex];
-                listBoxSelecionado.Items.Add(new Item(TipoItem.Biblia, item));
-
-                bibliaIncluirAdicional(item);
-            }
-        }
-
-        private void buttonHistoricoBiblia_MouseHover(object sender, EventArgs e)
-        {
-            BibliaItem item;
-            string nome = ((Button)sender).Name;
-            int historicoIndex = Convert.ToInt32(nome.Substring(nome.Length - 1, 1)) - 1;
-
-            if (historicoBiblia != null && (item = historicoBiblia[historicoIndex]) != null)
-            {
-                toolTipBiblia.SetToolTip((Button)sender, item.ReferenciaCompleta);
-                toolTipBiblia.Active = true;
-            }
-            else
-            {
-                toolTipBiblia.Active = false;
-            }
-        }
-
-        private void buttonMostrarAviso_Click(object sender, EventArgs e)
-        {
-            if (comboBoxAvisoTitulo.Text.Trim().Length == 0)
-            {
-                MessageBox.Show("Digite um título para o aviso antes de mostrá-lo.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            else
-            {
-                backgroundWorker1.DoWork += DoWork_MostrarAviso;
-                backgroundWorker1.RunWorkerAsync(new string[] { comboBoxAvisoTitulo.Text.Trim(), textBoxAvisos.Text });
-            }
-        }
-
-        private void buttonBibliaMostrar_Click(object sender, EventArgs e)
-        {
-            if (validaCamposBiblia())
-            {
-                string traducao = ((Item)comboBoxBibliaTraducao.SelectedItem).GetItemChaveValor().chave;
-                string livro = ((Item)comboBoxBibliaLivro.SelectedItem).GetItemChaveValor().chave;
-                int capitulo = Convert.ToInt32(textBoxBibliaCapitulo.Text);
-                int versiculo = Convert.ToInt32(textBoxBibliaVersiculo.Text);
-
-                int adicional = 0;
-                if (textBoxBibliaVersiculoAdicional.Text != "")
-                {
-                    adicional = Convert.ToInt32(textBoxBibliaVersiculoAdicional.Text);
-                }
-
-                backgroundWorker1.DoWork += DoWork_MostrarBiblia;
-                backgroundWorker1.RunWorkerAsync(new object[] { traducao, livro, capitulo, versiculo, adicional });
-            }
-        }
-
-        private void buttonMostrarApresentacao_Click(object sender, EventArgs e)
-        {
-            backgroundWorker1.DoWork += DoWork_MostrarSelecionados;
-            backgroundWorker1.RunWorkerAsync();
         }
 
         private void MostrarAviso(System.ComponentModel.DoWorkEventArgs e)
@@ -1563,6 +1579,85 @@ namespace Apresentacao
             finally
             {
                 GC.Collect();
+            }
+        }
+
+        private void SendServerMessage(String message)
+        {
+            if (!toolStripMenuItemAtivarSocket.Checked) return;
+
+            String server = toolStripTextBoxIPSocket.Text;
+
+            try
+            {
+                // Create a TcpClient. 
+                // Note, for this client to work you need to have a TcpServer  
+                // connected to the same address as specified by the server, port 
+                // combination.
+                Int32 port = 13000;
+                TcpClient client = new TcpClient(server, port);
+
+                // Translate the passed message into ASCII and store it as a Byte array.
+                Byte[] data = System.Text.Encoding.UTF8.GetBytes(message);
+
+                // Get a client stream for reading and writing. 
+                //  Stream stream = client.GetStream();
+
+                NetworkStream stream = client.GetStream();
+
+                // Send the message to the connected TcpServer. 
+                stream.Write(data, 0, data.Length);
+
+                // Receive the TcpServer.response. 
+
+                // Buffer to store the response bytes.
+                //data = new Byte[256];
+
+                // String to store the response ASCII representation.
+                //String responseData = String.Empty;
+
+                // Read the first batch of the TcpServer response bytes.
+                //Int32 bytes = stream.Read(data, 0, data.Length);
+                //responseData = System.Text.Encoding.UTF8.GetString(data, 0, bytes);
+
+                // Close everything.
+                stream.Close();
+                client.Close();
+            }
+            catch (ArgumentNullException e)
+            {
+                toolStripStatusLabelServer.Text = "ArgumentNullException: " + e.Message.Replace("\n", "");
+            }
+            catch (SocketException e)
+            {
+                toolStripStatusLabelServer.Text = "SocketException: " + e.Message.Replace("\n", "");
+            }
+
+        }
+
+        #endregion
+
+        private void ativarImagemSlide()
+        {
+            if (listBoxSlides.SelectedIndex >= 0)
+            {
+                int index = listBoxSlides.SelectedIndex + 1;
+                pictureBoxSlide.Image = CreateNonIndexedImage("slide" + index.ToString().PadLeft(3, '0') + ".png");
+
+                if (checkBoxEnviarCopia.Checked)
+                {
+                    if (!System.IO.File.Exists(textBoxLocalSalvarImagem.Text))
+                    {
+                        System.IO.FileInfo info = new System.IO.FileInfo(textBoxLocalSalvarImagem.Text);
+
+                        if (!System.IO.Directory.Exists(info.DirectoryName))
+                        {
+                            System.IO.Directory.CreateDirectory(info.DirectoryName);
+                        }
+                    }
+
+                    System.IO.File.Copy("slide" + index.ToString().PadLeft(3, '0') + ".png", textBoxLocalSalvarImagem.Text, true);
+                }
             }
         }
 
@@ -1766,43 +1861,6 @@ namespace Apresentacao
             }
         }
 
-        private void visaoToolStripMenuItem_CheckStateChanged(object sender, EventArgs e)
-        {
-            int rowspan;
-
-            // esquera
-            rowspan = (imagemToolStripMenuItem.Checked ? 2 : 4 );
-            tableLayoutPanelPrincipal.SetRowSpan(groupBoxHinos, rowspan);
-            groupBoxSlides.Visible = imagemToolStripMenuItem.Checked;
-
-            // centro
-            groupBoxAvisos.Visible = avisosToolStripMenuItem.Checked;
-            if (avisosToolStripMenuItem.Checked)
-            {
-                tableLayoutPanelPrincipal.Controls.Remove(groupBoxSelecionadas);
-                tableLayoutPanelPrincipal.Controls.Add(groupBoxSelecionadas, 1, 3);
-                tableLayoutPanelPrincipal.SetRowSpan(groupBoxSelecionadas, 2);
-            }
-            else
-            {
-                tableLayoutPanelPrincipal.Controls.Remove(groupBoxSelecionadas);
-                tableLayoutPanelPrincipal.Controls.Add(groupBoxSelecionadas, 1, 2);
-                tableLayoutPanelPrincipal.SetRowSpan(groupBoxSelecionadas, 3);
-            }
-            
-            // direita
-            rowspan = (navegadorToolStripMenuItem.Checked ? 2 : 4);
-            tableLayoutPanelPrincipal.SetRowSpan(groupBoxAtiva, rowspan);
-            groupBoxVMix.Visible = navegadorToolStripMenuItem.Checked;
-        }
-
-        private void buttonAtualizarBaseHinos_Click(object sender, EventArgs e)
-        {
-            Thread atualizar = new Thread(() => AtualizaBaseHinos());
-            atualizar.IsBackground = true;
-            atualizar.Start();
-        }
-
         private bool validaCamposBiblia()
         {
             comboBoxBibliaLivro.BackColor    = System.Drawing.SystemColors.Window;
@@ -1833,115 +1891,6 @@ namespace Apresentacao
             }
 
             return true;
-        }
-
-        private void incluirItem_DragEnter(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop)) 
-                e.Effect = DragDropEffects.Copy;
-            else
-                e.Effect = DragDropEffects.None;
-            
-        }
-
-        private void incluirItem_DragDrop(object sender, DragEventArgs e)
-        {
-            string[] infoArquivo = (string[])e.Data.GetData(DataFormats.FileDrop);
-
-            for (int i = 0; i < infoArquivo.Length; i++)
-            {
-                System.IO.FileInfo info = new System.IO.FileInfo(infoArquivo[i]);
-
-                if (info.Extension != ".txt")
-                {
-                    MessageBox.Show("Só é aceito arquivo do tipo TXT.\nArquivo " + info.Name + " não copiado.","Atenção");
-                    continue;
-                }
-
-                System.IO.DirectoryInfo hinosFolder = new System.IO.DirectoryInfo(strCurrDir + "\\Hinos");
-                System.IO.FileInfo[] infoExiste = hinosFolder.GetFiles(info.Name);
-
-                if (infoExiste.Length > 0)
-                {
-                    MessageBox.Show("Já existe um arquivo com esse nome\nArquivo " + info.Name + " não copiado.", "Atenção");
-                    continue;
-                }
-
-                string destName = hinosFolder.FullName + "\\" + info.Name;
-                System.IO.File.Copy(info.FullName, destName);
-
-                // Analisa codificação do arquivo
-                // Se não for UTF8 então faz a conversão
-                Encoding originalEnconding = GetEncoding(info.FullName);
-                if (originalEnconding.HeaderName != "utf-8")
-                {
-                    byte[] ansiBytes = System.IO.File.ReadAllBytes(destName);
-                    var utf8String = Encoding.Default.GetString(ansiBytes);
-                    System.IO.File.WriteAllText(destName, utf8String);
-                }
-
-                // cria novo hino nas estruturas
-                HinoItem newHino = new HinoItem(info.Name, destName);
-                listBoxDisponivel.Items.Add(newHino);
-                baseHinos.Add(newHino);
-
-                // inclusive nos itens selecionados
-                if (((ListBox)sender).Name == "listBoxSelecionado")
-                listBoxSelecionado.Items.Add(new Item(TipoItem.Hino, newHino));
-
-            }
-
-        }
-
-        /// <summary>
-        /// Determines a text file's encoding by analyzing its byte order mark (BOM).
-        /// Defaults to ASCII when detection of the text file's endianness fails.
-        /// </summary>
-        /// <param name="filename">The text file to analyze.</param>
-        /// <returns>The detected encoding.</returns>
-        public Encoding GetEncoding(string filename)
-        {
-            // Read the BOM
-            var bom = new byte[4];
-            using (var file = new System.IO.FileStream(filename, System.IO.FileMode.Open)) file.Read(bom, 0, 4);
-
-            // Analyze the BOM
-            if (bom[0] == 0x2b && bom[1] == 0x2f && bom[2] == 0x76) return Encoding.UTF7;
-            if (bom[0] == 0xef && bom[1] == 0xbb && bom[2] == 0xbf) return Encoding.UTF8;
-            if (bom[0] == 0xff && bom[1] == 0xfe) return Encoding.Unicode; //UTF-16LE
-            if (bom[0] == 0xfe && bom[1] == 0xff) return Encoding.BigEndianUnicode; //UTF-16BE
-            if (bom[0] == 0 && bom[1] == 0 && bom[2] == 0xfe && bom[3] == 0xff) return Encoding.UTF32;
-            return Encoding.ASCII;
-        }
-
-        private void buttonVoltarLinha_Click(object sender, EventArgs e)
-        {
-            int linhaAtiva = textBoxAtivo.GetLineFromCharIndex(textBoxAtivo.SelectionStart);
-
-            if( linhaAtiva >= 0 )
-            {
-                if (linhaAtiva > 0) linhaAtiva--;
-
-                selecionarLinhaAndAtualizaLabel(linhaAtiva);
-
-                SelecionarLinhaAndEnviar(false);
-            }
-
-        }
-
-        private void buttonAvancarLinha_Click(object sender, EventArgs e)
-        {
-            int linhaAtiva = textBoxAtivo.GetLineFromCharIndex(textBoxAtivo.SelectionStart);
-
-            if (linhaAtiva <= textBoxAtivo.Lines.Length)
-            {
-                if (linhaAtiva < textBoxAtivo.Lines.Length) linhaAtiva++;
-
-                selecionarLinhaAndAtualizaLabel(linhaAtiva);
-
-                SelecionarLinhaAndEnviar(false);
-            }
-
         }
 
         private void selecionarLinhaAndAtualizaLabel(int linhaAtiva, bool selecionarLinha = true)
@@ -1976,6 +1925,57 @@ namespace Apresentacao
                 }
             }
         }
-        
+
+        private string EncodeTo64(string toEncode)
+        {
+
+            byte[] toEncodeAsBytes
+
+                  = System.Text.Encoding.Unicode.GetBytes(toEncode);
+
+            string returnValue
+
+                  = System.Convert.ToBase64String(toEncodeAsBytes);
+
+            return returnValue;
+
+        }
+
+        private string DecodeFrom64(string encodedData)
+        {
+
+            byte[] encodedDataAsBytes
+
+                = System.Convert.FromBase64String(encodedData);
+
+            string returnValue =
+
+               System.Text.Encoding.Unicode.GetString(encodedDataAsBytes);
+
+            return returnValue;
+
+        }
+
+        /// <summary>
+        /// Determines a text file's encoding by analyzing its byte order mark (BOM).
+        /// Defaults to ASCII when detection of the text file's endianness fails.
+        /// </summary>
+        /// <param name="filename">The text file to analyze.</param>
+        /// <returns>The detected encoding.</returns>
+        public Encoding GetEncoding(string filename)
+        {
+            // Read the BOM
+            var bom = new byte[4];
+            using (var file = new System.IO.FileStream(filename, System.IO.FileMode.Open)) file.Read(bom, 0, 4);
+
+            // Analyze the BOM
+            if (bom[0] == 0x2b && bom[1] == 0x2f && bom[2] == 0x76) return Encoding.UTF7;
+            if (bom[0] == 0xef && bom[1] == 0xbb && bom[2] == 0xbf) return Encoding.UTF8;
+            if (bom[0] == 0xff && bom[1] == 0xfe) return Encoding.Unicode; //UTF-16LE
+            if (bom[0] == 0xfe && bom[1] == 0xff) return Encoding.BigEndianUnicode; //UTF-16BE
+            if (bom[0] == 0 && bom[1] == 0 && bom[2] == 0xfe && bom[3] == 0xff) return Encoding.UTF32;
+            return Encoding.ASCII;
+        }
+
     }
 }
