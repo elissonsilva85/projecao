@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Net.Sockets;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -10,16 +9,17 @@ using System.Text;
 using System.Windows.Forms;
 using Microsoft.Office.Core;
 using PowerPoint = Microsoft.Office.Interop.PowerPoint;
-using System.Runtime.InteropServices;
-using Finisar.SQLite;
 using System.Threading;
 using System.Xml;
-using System.Xml.Linq;
+using log4net;
+using log4net.Config;
 
 namespace Apresentacao
 {
     public partial class FormPrincipal : Form
     {
+        private static readonly ILog log = LogManager.GetLogger(typeof(FormPrincipal));
+
         private const int TIPO_VAZIO = 0;
         private const int TIPO_AVISO = 1;
         private const int TIPO_LOUVOR = 2;
@@ -64,6 +64,11 @@ namespace Apresentacao
         
         public FormPrincipal()
         {
+            log4net.Config.XmlConfigurator.Configure();
+
+            log.Info("===========================================");
+            log.Info("Iniciando aplicação");
+
             InitializeComponent();
 
             setObjectText(toolStripStatusLabelStatus, "toolStrip", "Inicializando ...");
@@ -137,6 +142,8 @@ namespace Apresentacao
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
+            log.Info("Carregando arquivos");
+
             strCurrDir = System.IO.Directory.GetCurrentDirectory();
             tipoItemSelecionado = TipoItem.Nenhum;
 
@@ -163,6 +170,8 @@ namespace Apresentacao
             if (countTemplates > 0)
                 toolStripComboBoxTemplate.SelectedIndex = 0;
 
+            log.Info("- Templates localizados: " + countTemplates);
+
             // Popular com os avisos
 
             System.IO.DirectoryInfo avisoFolder = new System.IO.DirectoryInfo(strCurrDir + "\\Avisos");
@@ -172,15 +181,21 @@ namespace Apresentacao
 
             comboBoxAvisoTitulo.SelectedIndex = -1;
 
+            log.Info("- Aviso localizados: " + avisos.Length);
+
             // Popular com os hinos
 
             buttonAtualizarBaseHinos_Click(null, null);
+
+            log.Info("- Hinos carregados");
 
             // Popular os campos da Biblia
 
             AtualizarListaBibliaTraducao();
 
             AtualizarListaBibliaLivros();
+
+            log.Info("- Biblia carregada");
 
             // Ajusta disponibilização dos botões de imagem
 
@@ -192,6 +207,8 @@ namespace Apresentacao
             sToolStripMenuItem_Click(null, null);
 
             setObjectText(toolStripStatusLabelStatus, "toolStrip", "Sistema pronto para uso.");
+
+            log.Info("- Sistema pronto pra uso");
         }
 
         #region EVENTOS
@@ -440,6 +457,7 @@ namespace Apresentacao
                 }
                 catch (Exception ex)
                 {
+                    log.Error("buttonBibliaAdicionar_Click: " + ex.Message, ex);
                     MessageBox.Show(ex.Message);
                 }
             }
@@ -461,6 +479,7 @@ namespace Apresentacao
                 }
                 catch (Exception ex)
                 {
+                    log.Error("bibliaIncluirAdicional: " + ex.Message, ex);
                     MessageBox.Show(ex.Message);
                 }
 
@@ -584,20 +603,28 @@ namespace Apresentacao
             List<HinoItem> resultado = baseHinos.FindAll(delegate(HinoItem hino) {
                 bool localizou;
 
-                // Analisa o texto
-                if (letraTratada.Length > 0)
+                try
                 {
-                    localizou = (RemoverAcentos(hino.letra.ToUpper()).IndexOf(letraTratada.ToUpper()) != -1);
-                }
-                else
-                {
-                    localizou = true;
-                }
+                    // Analisa o texto
+                    if (letraTratada.Length > 0)
+                    {
+                        localizou = (RemoverAcentos(hino.letra.ToUpper()).IndexOf(letraTratada.ToUpper()) != -1);
+                    }
+                    else
+                    {
+                        localizou = true;
+                    }
 
-                // Analisa o titulo
-                if (localizou && tituloTratado.Length > 0)
+                    // Analisa o titulo
+                    if (localizou && tituloTratado.Length > 0)
+                    {
+                        localizou = (RemoverAcentos(hino.nome.ToUpper()).IndexOf(tituloTratado.ToUpper()) != -1);
+                    }
+                }
+                catch (Exception ex)
                 {
-                    localizou = (RemoverAcentos(hino.nome.ToUpper()).IndexOf(tituloTratado.ToUpper()) != -1);
+                    log.Error("baseHinos.FindAll [" + hino + "]: " + ex.Message, ex);
+                    localizou = false;
                 }
 
                 return localizou;
@@ -1046,8 +1073,9 @@ namespace Apresentacao
                     setObjectText(toolStripStatusLabelStatus, "toolStrip", "Apresentação finalizada");
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                log.Error("VerificaStatusApresentacao: " + ex.Message, ex);
             }
         }
 
@@ -1233,9 +1261,10 @@ namespace Apresentacao
                 }
 
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                toolStripStatusLabelServer.Text = "Exception: " + e.Message.Replace("\n", "");
+                log.Error("vMixSetupXAML: " + ex.Message, ex);
+                toolStripStatusLabelServer.Text = "Exception: " + ex.Message.Replace("\n", "");
             }
 
         }
@@ -1270,7 +1299,7 @@ namespace Apresentacao
                     vMixSetupXAML(TIPO_VAZIO);
                 }
             }
-            catch (Exception e)
+            catch
             {
                 vMixSetupXAML(TIPO_VAZIO);
             }
@@ -1333,11 +1362,17 @@ namespace Apresentacao
 
         private void FormPrincipal_FormClosed(object sender, FormClosedEventArgs e)
         {
+            log.Info("Finalizando aplicação");
+
             for (int i = 0; i < listBoxSlides.Items.Count; i++)
             {
                 if (i == 0) pictureBoxSlide.Image = Apresentacao.Properties.Resources.FundoSlide;
                 System.IO.File.Delete("slide" + (i + 1).ToString().PadLeft(3, '0') + ".png");
+                log.Info("- Arquivo " + "slide" + (i + 1).ToString().PadLeft(3, '0') + ".png" + " removido");
             }
+
+            log.Info("===========================================");
+
         }
 
         private void checkBoxGerarImagem_CheckedChanged(object sender, EventArgs e)
@@ -1592,6 +1627,7 @@ namespace Apresentacao
             }
             catch (Exception ex)
             {
+                log.Error("MostrarAviso: " + ex.Message, ex);
                 MessageBox.Show(ex.Message);
             }
             finally
@@ -1634,6 +1670,7 @@ namespace Apresentacao
                         }
                         catch (Exception ex)
                         {
+                            log.Error("MostrarBiblia: " + ex.Message, ex);
                             MessageBox.Show(ex.Message);
                         }
 
@@ -1645,6 +1682,7 @@ namespace Apresentacao
             }
             catch (Exception ex)
             {
+                log.Error("MostrarBiblia: " + ex.Message, ex);
                 MessageBox.Show(ex.Message);
             }
             finally

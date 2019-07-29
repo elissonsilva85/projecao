@@ -106,6 +106,7 @@
             this.apresentaçãoSelecionadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xAMLvMixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAtivarSocket = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripTextBoxIPSocket = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.limparTudoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -120,7 +121,6 @@
             this.toolStripComboBoxTemplate = new System.Windows.Forms.ToolStripComboBox();
             this.toolTipBiblia = new System.Windows.Forms.ToolTip(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.toolStripTextBoxIPSocket = new System.Windows.Forms.ToolStripTextBox();
             this.groupBoxHinos.SuspendLayout();
             this.tableLayoutPanelHinos.SuspendLayout();
             this.groupBoxSelecionadas.SuspendLayout();
@@ -1004,6 +1004,12 @@
             this.toolStripMenuItemAtivarSocket.Text = "Ativar Integração";
             this.toolStripMenuItemAtivarSocket.Click += new System.EventHandler(this.sToolStripMenuItem_Click);
             // 
+            // toolStripTextBoxIPSocket
+            // 
+            this.toolStripTextBoxIPSocket.Name = "toolStripTextBoxIPSocket";
+            this.toolStripTextBoxIPSocket.Size = new System.Drawing.Size(100, 23);
+            this.toolStripTextBoxIPSocket.Text = "127.0.0.1:8088";
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -1103,12 +1109,6 @@
             // backgroundWorker1
             // 
             this.backgroundWorker1.WorkerSupportsCancellation = true;
-            // 
-            // toolStripTextBoxIPSocket
-            // 
-            this.toolStripTextBoxIPSocket.Name = "toolStripTextBoxIPSocket";
-            this.toolStripTextBoxIPSocket.Size = new System.Drawing.Size(100, 23);
-            this.toolStripTextBoxIPSocket.Text = "127.0.0.1:8088";
             // 
             // FormPrincipal
             // 
