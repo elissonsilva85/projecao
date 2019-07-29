@@ -956,7 +956,7 @@
             // powerPointToolStripMenuItem
             // 
             this.powerPointToolStripMenuItem.Name = "powerPointToolStripMenuItem";
-            this.powerPointToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.powerPointToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.powerPointToolStripMenuItem.Text = "Power Point";
             this.powerPointToolStripMenuItem.Click += new System.EventHandler(this.powerPointToolStripMenuItem_Click);
             // 
@@ -966,7 +966,7 @@
             this.tooltipToolStripMenuItem,
             this.apresentaçãoSelecionadaToolStripMenuItem});
             this.toolStripMenuItemExibirEm.Name = "toolStripMenuItemExibirEm";
-            this.toolStripMenuItemExibirEm.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemExibirEm.Size = new System.Drawing.Size(149, 22);
             this.toolStripMenuItemExibirEm.Text = "Exibir hino em";
             // 
             // tooltipToolStripMenuItem
@@ -993,7 +993,7 @@
             this.toolStripSeparator1,
             this.limparTudoToolStripMenuItem});
             this.xAMLvMixToolStripMenuItem.Name = "xAMLvMixToolStripMenuItem";
-            this.xAMLvMixToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xAMLvMixToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.xAMLvMixToolStripMenuItem.Text = "vMix (XAML)";
             // 
             // toolStripMenuItemAtivarSocket
