@@ -106,10 +106,7 @@
             this.apresentaçãoSelecionadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xAMLvMixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAtivarSocket = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripTextBoxIPSocket = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.ativaDesativaDebugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.desativarListenerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.limparTudoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imagemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -123,6 +120,7 @@
             this.toolStripComboBoxTemplate = new System.Windows.Forms.ToolStripComboBox();
             this.toolTipBiblia = new System.Windows.Forms.ToolTip(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.toolStripTextBoxIPSocket = new System.Windows.Forms.ToolStripTextBox();
             this.groupBoxHinos.SuspendLayout();
             this.tableLayoutPanelHinos.SuspendLayout();
             this.groupBoxSelecionadas.SuspendLayout();
@@ -993,8 +991,6 @@
             this.toolStripMenuItemAtivarSocket,
             this.toolStripTextBoxIPSocket,
             this.toolStripSeparator1,
-            this.ativaDesativaDebugToolStripMenuItem,
-            this.desativarListenerToolStripMenuItem,
             this.limparTudoToolStripMenuItem});
             this.xAMLvMixToolStripMenuItem.Name = "xAMLvMixToolStripMenuItem";
             this.xAMLvMixToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
@@ -1004,39 +1000,19 @@
             // 
             this.toolStripMenuItemAtivarSocket.CheckOnClick = true;
             this.toolStripMenuItemAtivarSocket.Name = "toolStripMenuItemAtivarSocket";
-            this.toolStripMenuItemAtivarSocket.Size = new System.Drawing.Size(188, 22);
+            this.toolStripMenuItemAtivarSocket.Size = new System.Drawing.Size(164, 22);
             this.toolStripMenuItemAtivarSocket.Text = "Ativar Integração";
             this.toolStripMenuItemAtivarSocket.Click += new System.EventHandler(this.sToolStripMenuItem_Click);
-            // 
-            // toolStripTextBoxIPSocket
-            // 
-            this.toolStripTextBoxIPSocket.Name = "toolStripTextBoxIPSocket";
-            this.toolStripTextBoxIPSocket.Size = new System.Drawing.Size(100, 23);
-            this.toolStripTextBoxIPSocket.Text = "127.0.0.1";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(185, 6);
-            // 
-            // ativaDesativaDebugToolStripMenuItem
-            // 
-            this.ativaDesativaDebugToolStripMenuItem.Name = "ativaDesativaDebugToolStripMenuItem";
-            this.ativaDesativaDebugToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.ativaDesativaDebugToolStripMenuItem.Text = "Ativa/Desativa Debug";
-            this.ativaDesativaDebugToolStripMenuItem.Click += new System.EventHandler(this.ativaDesativaDebugToolStripMenuItem_Click);
-            // 
-            // desativarListenerToolStripMenuItem
-            // 
-            this.desativarListenerToolStripMenuItem.Name = "desativarListenerToolStripMenuItem";
-            this.desativarListenerToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.desativarListenerToolStripMenuItem.Text = "Desativar Listener";
-            this.desativarListenerToolStripMenuItem.Click += new System.EventHandler(this.desativarListenerToolStripMenuItem_Click);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(161, 6);
             // 
             // limparTudoToolStripMenuItem
             // 
             this.limparTudoToolStripMenuItem.Name = "limparTudoToolStripMenuItem";
-            this.limparTudoToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.limparTudoToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.limparTudoToolStripMenuItem.Text = "Limpar Tudo";
             this.limparTudoToolStripMenuItem.Click += new System.EventHandler(this.limparTudoToolStripMenuItem_Click);
             // 
@@ -1127,6 +1103,12 @@
             // backgroundWorker1
             // 
             this.backgroundWorker1.WorkerSupportsCancellation = true;
+            // 
+            // toolStripTextBoxIPSocket
+            // 
+            this.toolStripTextBoxIPSocket.Name = "toolStripTextBoxIPSocket";
+            this.toolStripTextBoxIPSocket.Size = new System.Drawing.Size(100, 23);
+            this.toolStripTextBoxIPSocket.Text = "127.0.0.1:8088";
             // 
             // FormPrincipal
             // 
@@ -1236,10 +1218,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemAtivarSocket;
         private System.Windows.Forms.ToolStripMenuItem apresentaçãoSelecionadaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tooltipToolStripMenuItem;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxIPSocket;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem ativaDesativaDebugToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem desativarListenerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem limparTudoToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBoxSlides;
         private System.Windows.Forms.ListBox listBoxSlides;
@@ -1267,6 +1246,7 @@
         private System.Windows.Forms.Button buttonVoltarLinha;
         private System.Windows.Forms.Button buttonAvancarLinha;
         private System.Windows.Forms.Label labelLinhaAtiva;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxIPSocket;
     }
 }
 
